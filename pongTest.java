@@ -1,3 +1,12 @@
+/*
+	GraphicsComponent massive tree for each thing, highest class has static variable for what to draw on
+	InputComponent has all the bind aspects (bind a method to a control for that object)
+	Event Queue for popup messages
+	Audio singleton processing a queue of sounds, file to link codenames to mp3files	
+	Add logging for debugging purposes (use Decorators to enable it)
+*/
+
+
 class Pong extends Game
 {
 	
@@ -11,8 +20,8 @@ class Pong extends Game
 
 	public void run()
 	{
-		if (ball.collides(paddleLeft)
-)	}
+		if (ball.collides(paddleLeft))
+	}
 
 
 	public void draw()
