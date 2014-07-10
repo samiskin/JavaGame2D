@@ -19,7 +19,7 @@ abstract class Engine {
 		
 	}
 	
-	public void draw(Graphics g){
+	public void draw(){
 		
 		
 	}

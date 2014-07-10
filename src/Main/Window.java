@@ -1,4 +1,11 @@
 package Main;
+import static org.lwjgl.opengl.GL11.GL_MODELVIEW;
+import static org.lwjgl.opengl.GL11.GL_PROJECTION;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
+import static org.lwjgl.opengl.GL11.glEnable;
+import static org.lwjgl.opengl.GL11.glMatrixMode;
+import static org.lwjgl.opengl.GL11.glOrtho;
+
 import java.applet.Applet;
 import java.applet.AudioClip;
 import java.awt.*;
@@ -14,111 +21,39 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import org.lwjgl.LWJGLException;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
+
 
 public class Window extends JFrame{
 
 	
 	public static int WIDTH = 1280;
 	public static int HEIGHT = 720;
-	Engine engine_;
-	private DrawingPanel panel;
-	boolean running;
 	
-	public Window (int width, int height, Engine engine)
+	public Window (int width, int height)
 	{
-		super("MainScreen");
-		this.setSize(width,height);
+		try {
+            Display.setDisplayMode(new DisplayMode(width, height));
+            Display.setTitle("LWJGL Demo");
+            Display.create();
+        } catch (LWJGLException e) {
+            e.printStackTrace();
+            Display.destroy();
+            System.exit(1);
+        }
+		
+        glMatrixMode(GL_PROJECTION);
+        glOrtho(0, width, height, 0, 1, -1);
+        glMatrixMode(GL_MODELVIEW);
+        glEnable(GL_TEXTURE_2D);
+        
 		WIDTH = width;
 		HEIGHT = height;
-
-		engine_ = engine;
-
-		setVisible(true);
-		
-		panel = new DrawingPanel();
-		getContentPane().add(panel, BorderLayout.CENTER);
-		running = true;
-		
 	}
 	
 	
-	public void start()
-	{
-		while(running){
-			engine_.update();
-			panel.repaint();
-		}
-	}
-	
-	public void stop()
-	{
-		running = false;
-	}
-	
-	
-	private class DrawingPanel extends JPanel
-	{
-
-		MouseHandler mouse;
-		Timer timer;
-
-		public DrawingPanel()
-		{
-			this.setFocusable(true);
-
-			mouse = new MouseHandler();
-			this.addMouseListener(mouse);
-			this.addMouseMotionListener(mouse);
-			this.addKeyListener(new KeyHandler());
-			setBackground(Color.black);
-			setResizable(false);
-		}
-
-		public void paintComponent(Graphics g)
-		{
-			super.paintComponent(g);
-			engine_.draw(g);
-		}
-
-
-	}
-	
-
-	private class MouseHandler extends MouseAdapter
-	{
-	
-		public void mousePressed(MouseEvent event)
-		{
-			engine_.mousePressed(event);
-		}
-
-		public void mouseReleased(MouseEvent event)
-		{
-			engine_.mouseReleased(event);
-		}
-
-		public void mouseMoved(MouseEvent event)
-		{
-			engine_.mouseMoved(event);
-		}
-		
-		public void mouseDragged(MouseEvent event)
-		{
-			engine_.mouseDragged(event);		
-		}
-	}
-
-	
-	private class KeyHandler extends KeyAdapter
-	{
-		
-		public void keyPressed(KeyEvent event)
-		{
-			engine_.keyPressed(event);
-		}
-		
-	}
-
 	
 	
 	
