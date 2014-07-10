@@ -22,7 +22,7 @@ public class Image {
 	
 	public void draw(int x, int y, int width, int height){
 		texture.bind();
-        glBegin(GL_QUADS);
+        glBegin(GL_TRIANGLE_STRIP);
         glTexCoord2f(1, 0);
         glVertex2i(x+width, y);
         glTexCoord2f(0, 0);

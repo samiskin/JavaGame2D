@@ -24,59 +24,35 @@ public class Game {
     
 	static Window screen;
 	private static Texture wood;
-
-    public static void main(String args[]) {
+	public static long timeDelta;
+	private Image img;
+	
+	public Game(){
         screen = new Window(1280,720);
 
-        Image img = null;
+        img = null;
         try {
-			img = new Image("res/images/wood.png");
+			img = new Image("res/images/beserker.gif","GIF");
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-        
+		}        
 
         while (!Display.isCloseRequested()) {
             glClear(GL_COLOR_BUFFER_BIT);
-            img.draw(10,10,500,400);
+            update();
             Display.update();
             Display.sync(60);
         }
+
+
         // Release the resources of the wood texture
-        wood.release();
         Display.destroy();
         System.exit(0);
-    }
-}
-
-/*import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.io.IOException;
-
-import javax.swing.JFrame;
-
-
-class Game extends Engine{
-	
-	protected Window screen;
-	
-	public Game(int screenWidth, int screenHeight){
-		screen = new Window (screenWidth,screenHeight, this);
-		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-		screen.start();
 	}
 	
-	
-	public void update(){
-		screen.drawOval(100, 100, 100, 100);
+	protected void update(){
+		img.draw(10,10,100,100);
 	}
-	
-	
-	public static void main(String[] args)
-	{
-		Game game = new Game(1280,720);		
-	}
+
 
 }
-*/
