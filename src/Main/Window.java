@@ -1,5 +1,4 @@
-
-
+package Main;
 import java.applet.Applet;
 import java.applet.AudioClip;
 import java.awt.*;
@@ -15,40 +14,49 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class Main extends JFrame
-{
+
+public class Window extends JFrame{
+
 	
-	final static int WIDTH = 1280;
-	final static int HEIGHT = 720;
-	Engine engine;
-
-	public Main(int screenWidth, int screenHeight) throws FontFormatException,
-			IOException
-	{		
+	public static int WIDTH = 1280;
+	public static int HEIGHT = 720;
+	Engine engine_;
+	private DrawingPanel panel;
+	boolean running;
+	
+	public Window (int width, int height, Engine engine)
+	{
 		super("MainScreen");
-		this.setSize(screenWidth,screenHeight);
-		
+		this.setSize(width,height);
+		WIDTH = width;
+		HEIGHT = height;
 
-		engine = new Engine();
-		
-		getContentPane().add(new DrawingPanel(), BorderLayout.CENTER);
+		engine_ = engine;
+
 		setVisible(true);
 		
+		panel = new DrawingPanel();
+		getContentPane().add(panel, BorderLayout.CENTER);
+		running = true;
+		
 	}
-
-
-	public static void main(String[] args) throws IOException,
-			FontFormatException
+	
+	
+	public void start()
 	{
-		Main mainScreen = new Main(WIDTH, HEIGHT);
-		mainScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
-		
+		while(running){
+			engine_.update();
+			panel.repaint();
+		}
 	}
-
-
-	private class DrawingPanel extends JPanel implements ActionListener
+	
+	public void stop()
+	{
+		running = false;
+	}
+	
+	
+	private class DrawingPanel extends JPanel
 	{
 
 		MouseHandler mouse;
@@ -64,23 +72,15 @@ public class Main extends JFrame
 			this.addKeyListener(new KeyHandler());
 			setBackground(Color.black);
 			setResizable(false);
-
-			// The game updates every time the timer finishes
-			timer = new Timer(30, this);
-			timer.start();
 		}
 
 		public void paintComponent(Graphics g)
 		{
 			super.paintComponent(g);
-			engine.draw(g);
+			engine_.draw(g);
 		}
 
-		public void actionPerformed(ActionEvent e)
-		{
-			engine.run();
-			repaint();
-		}
+
 	}
 	
 
@@ -89,22 +89,22 @@ public class Main extends JFrame
 	
 		public void mousePressed(MouseEvent event)
 		{
-			engine.mousePressed(event);
+			engine_.mousePressed(event);
 		}
 
 		public void mouseReleased(MouseEvent event)
 		{
-			engine.mouseReleased(event);
+			engine_.mouseReleased(event);
 		}
 
 		public void mouseMoved(MouseEvent event)
 		{
-			engine.mouseMoved(event);
+			engine_.mouseMoved(event);
 		}
 		
 		public void mouseDragged(MouseEvent event)
 		{
-			engine.mouseDragged(event);		
+			engine_.mouseDragged(event);		
 		}
 	}
 
@@ -114,9 +114,13 @@ public class Main extends JFrame
 		
 		public void keyPressed(KeyEvent event)
 		{
-			engine.keyPressed(event);
+			engine_.keyPressed(event);
 		}
 		
 	}
 
+	
+	
+	
+	
 }

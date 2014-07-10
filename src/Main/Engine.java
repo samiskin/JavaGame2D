@@ -1,3 +1,4 @@
+package Main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
@@ -5,7 +6,7 @@ import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 
 
-public class Engine {
+abstract class Engine {
 	
 	public Engine(){
 		
@@ -13,7 +14,7 @@ public class Engine {
 	}
 	
 	
-	public void run(){
+	public void update(){
 		
 		
 	}
