@@ -24,18 +24,20 @@ import javax.swing.Timer;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
+import static org.lwjgl.opengl.GL11.*;
 
 
-public class Window extends JFrame{
+public class Screen extends JFrame{
 
 	
 	public static int WIDTH = 1280;
 	public static int HEIGHT = 720;
 	
-	public Window (int width, int height)
+	public Screen (int width, int height)
 	{
 		try {
             Display.setDisplayMode(new DisplayMode(width, height));
+            Display.setFullscreen(true);
             Display.setTitle("LWJGL Demo");
             Display.create();
         } catch (LWJGLException e) {
@@ -44,16 +46,42 @@ public class Window extends JFrame{
             System.exit(1);
         }
 		
+		glClearColor(0.0f,0.0f,0.0f,1.0f);
         glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
         glOrtho(0, width, height, 0, 1, -1);
-        glMatrixMode(GL_MODELVIEW);
-        glEnable(GL_TEXTURE_2D);
+        //glMatrixMode(GL_MODELVIEW);
+        
         
 		WIDTH = width;
 		HEIGHT = height;
+		
 	}
+
 	
 	
+	public void drawOval (int x, int y, int width, int height)
+	{
+
+        glEnable(GL_COLOR_MATERIAL);
+		Color c = Color.GREEN;
+
+		int red    = c.getRed();
+		int blue   = c.getBlue();
+		int green  = c.getGreen();
+		int alpha  = c.getAlpha();
+
+		glColor4f(red, green, blue, alpha);
+
+		   glBegin(GL_QUADS);
+		 
+		   	glVertex2f(100,100);
+		   	glVertex2f(200,100);
+		   	glVertex2f(200,200);
+		   	glVertex2f(100,200);
+		 
+		   	glEnd();
+	}
 	
 	
 	

@@ -1,13 +1,6 @@
 package View;
 
-import java.awt.Graphics;
 
-public class ViewComponent {
-
-	
-	public ViewComponent(){
-		
-	}
-		
-	
+public interface ViewComponent {		
+	public void draw();	
 }

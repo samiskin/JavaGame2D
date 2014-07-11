@@ -22,13 +22,12 @@ import static org.lwjgl.opengl.GL11.*;
  */
 public class Game {
     
-	static Window screen;
-	private static Texture wood;
+	static Screen screen;
 	public static long timeDelta;
 	private Image img;
 	
 	public Game(){
-        screen = new Window(1280,720);
+        screen = new Screen(1280,720);
 
         img = null;
         try {
@@ -52,6 +51,7 @@ public class Game {
 	
 	protected void update(){
 		img.draw(10,10,100,100);
+		screen.drawOval(100, 100, 100, 100);
 	}
 
 

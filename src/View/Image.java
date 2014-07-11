@@ -21,6 +21,9 @@ public class Image {
 	}
 	
 	public void draw(int x, int y, int width, int height){
+
+        glEnable(GL_TEXTURE_2D);
+		glColor3f(1f,1f,1f);
 		texture.bind();
         glBegin(GL_TRIANGLE_STRIP);
         glTexCoord2f(1, 0);
@@ -32,6 +35,7 @@ public class Image {
         glTexCoord2f(1, 1);
         glVertex2i(x+width, y+height);
         glEnd();		
+        glDisable(GL_TEXTURE_2D);
 	}
 
 }
