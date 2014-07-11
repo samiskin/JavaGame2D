@@ -201,8 +201,6 @@ class Paddle
 		this.x = x;
 		this.y = y;
 		input = new InputComponent(this);
-		input.bind(Button.UpArrow, moveUp());
-		input.bind(Button.DownArrow, moveDown());
 	}
 
 	public void update()
