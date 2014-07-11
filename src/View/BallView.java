@@ -1,17 +1,20 @@
 package View;
 
+import java.awt.Color;
+
 import Model.Ball;
 
-public class BallView implements ViewComponent{
+public class BallView extends ViewComponent{
 
-	Ball element;
+	Ball ball;
 	
-	public BallView(Ball ball){
-		element = ball;
+	public BallView(Ball target){
+		ball = target;
 	}
 	
-	
-	public void draw() {
+
+	public void update() {
+		screen.fillOval(ball.getX(), ball.getY(), ball.getRadius(), Color.WHITE);
 		
 	}
 
