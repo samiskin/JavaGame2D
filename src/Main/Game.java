@@ -7,6 +7,7 @@ import org.newdawn.slick.opengl.TextureLoader;
 
 import View.Image;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -34,7 +35,7 @@ public class Game {
 			img = new Image("res/images/beserker.gif","GIF");
 		} catch (IOException e) {
 			e.printStackTrace();
-		}        
+		}
 
         while (!Display.isCloseRequested()) {
             glClear(GL_COLOR_BUFFER_BIT);
@@ -50,8 +51,9 @@ public class Game {
 	}
 	
 	protected void update(){
-		img.draw(10,10,100,100);
-		screen.drawOval(100, 100, 100, 100);
+		screen.update();
+		//img.draw(10,10,100,100);
+		screen.drawOval(Screen.WIDTH/2, Screen.HEIGHT/2, 500, Color.GREEN);
 	}
 
 
