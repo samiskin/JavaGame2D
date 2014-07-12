@@ -18,15 +18,12 @@ public class Pong extends Game{
 		start();
 	}
 	
-	public void init(){
-		
-	}
+	
 	
 	public void update(){
 		
 		if (paddleLeft.collides(ball) || paddleRight.collides(ball))
 			ball.bounceX();
-		else if (ball.)
 		
 		
 		paddleLeft.update();
