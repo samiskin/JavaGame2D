@@ -9,9 +9,10 @@ public class Pong extends Game{
 	Ball ball;
 	
 	public Pong(){
-		super();
+		super(640,480);
 		paddleLeft = new Paddle(0,Screen.HEIGHT/2,10,100);
 		paddleRight = new Paddle(Screen.WIDTH-10,Screen.HEIGHT/2,10,100);
+		paddleLeft.setControls("WS");
 		ball = new Ball(Screen.WIDTH/2, Screen.HEIGHT/2,10);
 		ball.setVel(5, 5);
 		start();
@@ -22,6 +23,12 @@ public class Pong extends Game{
 	}
 	
 	public void update(){
+		
+		if (paddleLeft.collides(ball) || paddleRight.collides(ball))
+			ball.bounceX();
+		else if (ball.)
+		
+		
 		paddleLeft.update();
 		paddleRight.update();
 		ball.update();

@@ -8,8 +8,8 @@ public class Paddle extends AbstractEntity2D{
 
 	private int width;
 	private int height;
-	private InputComponent control;
-	private ViewComponent view;
+	private PaddleController control;
+	private PaddleView view;
 	
 	private int speed = 5;
 	
@@ -27,14 +27,26 @@ public class Paddle extends AbstractEntity2D{
 		view.update();
 	}
 	
+	public void setControls(String controls){
+		if (controls == "WS")
+		{
+			control.setKeyCommand("UP","W");
+			control.setKeyCommand("DOWN","S");
+		}
+	}
+	
 	public void moveUp(){
-		if (y+height < Screen.HEIGHT)
-			y += speed;
+		if (y-speed > 0)
+			y -= speed;
+		else
+			y = 0;
 	}
 	
 	public void moveDown(){
-		if (y > 0)
-			y -= speed;
+		if (y+height+speed < Screen.HEIGHT)
+			y += speed;
+		else
+			y = Screen.HEIGHT - height;
 	}
 	
 	public int getWidth(){
@@ -43,6 +55,14 @@ public class Paddle extends AbstractEntity2D{
 	
 	public int getHeight(){
 		return height;
+	}
+	
+	private boolean inRange(double num, double lower, double upper){
+		return num >= lower && num < upper;
+	}
+
+	public boolean collides(Ball ball) {
+		return inRange(ball.x, x-ball.getRadius(),x+width+ball.getRadius()) && inRange(ball.y,y,y+height);
 	}
 	
 	

@@ -109,7 +109,7 @@ public class Screen extends JFrame{
 	}
 	
 	public void drawOval(double cx, double cy, double r, Color color){
-		drawOval(cx,cy,r,color,(int)(r/2));
+		drawOval(cx,cy,r,color,(int)(Math.max(r/2,15)));
 	}
 	
 	public void fillOval(double cx, double cy, double r, Color color, int num_segments) 
@@ -137,7 +137,7 @@ public class Screen extends JFrame{
 	}
 	
 	public void fillOval(double cx, double cy, double r, Color color){
-		fillOval(cx,cy,r,color,(int)(r/2));
+		fillOval(cx,cy,r,color,(int)(Math.max(r/2,15)));
 	}
 	
 	public static void updateFPS() {

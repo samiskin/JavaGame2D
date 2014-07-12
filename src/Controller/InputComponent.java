@@ -7,6 +7,11 @@ import org.lwjgl.input.Keyboard;
 public abstract class InputComponent{
 	
 	protected static HashMap<String,Integer> keys = new HashMap<String,Integer>();
+	protected HashMap<String,String> cmd;
+	
+	public InputComponent(){
+		cmd = new HashMap<String,String>();
+	}
 	
 	public static void init(){
 		keys.put("LEFT", Keyboard.KEY_LEFT);
@@ -21,6 +26,10 @@ public abstract class InputComponent{
 
 	protected boolean keyPressed(String key){
 		return Keyboard.isKeyDown(keys.get(key));
+	}
+	
+	public void setKeyCommand(String command, String key){
+		cmd.put(command, key);
 	}
 	
 	

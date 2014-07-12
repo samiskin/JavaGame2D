@@ -1,5 +1,6 @@
 package Model;
 
+import Main.Screen;
 import View.BallView;
 import View.ViewComponent;
 
@@ -24,10 +25,24 @@ public class Ball extends AbstractEntity2D{
 		this.velY = velY;
 	}
 	
+	public void bounceX(){
+		velX *= -1;
+	}
+	
+	public void bounceY(){
+		velY *= -1;
+	}
+	
 	public void update(){
-		view.update();
-		x += velX;
+		view.update();		
+		if (y-radius < 0 || y+radius > Screen.HEIGHT)
+			bounceY();
+		if (x-radius < 0 || x+radius > Screen.WIDTH)
+			bounceX();
+			
 		y += velY;
+		x += velX;
+		
 	}
 	
 	public int getRadius(){

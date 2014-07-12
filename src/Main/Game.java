@@ -23,8 +23,8 @@ public class Game {
 	public static long timeDelta;
 	private Image img;
 	
-	public Game(){
-        screen = new Screen(640,480);
+	public Game(int width, int height){
+        screen = new Screen(width,height);
         InputComponent.init();
 
 	
