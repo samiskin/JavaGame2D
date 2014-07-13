@@ -34,6 +34,7 @@ import java.util.Set;
 
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.collision.shapes.PolygonShape;
+import org.jbox2d.collision.shapes.ShapeType;
 import org.jbox2d.common.*;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
@@ -69,7 +70,30 @@ public class PhysicsDemo {
         		Vec2 bodyPosition = body.getPosition().mul(30);
         		glTranslatef(bodyPosition.x,bodyPosition.y,0);
         		glRotated(Math.toDegrees(body.getAngle()),0,0,1);
-        		glRectf(-0.75f*30,-0.75f*30,0.75f*30,0.75f*30);
+        		if (body.getFixtureList().m_shape.m_type.equals(ShapeType.POLYGON))
+        			glRectf(-0.75f*30,-0.75f*30,0.75f*30,0.75f*30);
+        		else {
+        		double theta = 2 * 3.1415926 / 50; 
+        		double c = Math.cos(theta);//precalculate the sine and cosine
+        		double s = Math.sin(theta);
+        		double t;
+
+        		double x = body.getFixtureList().m_shape.m_radius*30;//we start at angle = 0 
+        		double y = 0; 
+
+        		
+        	    glBegin(GL_TRIANGLE_FAN); 
+        	    for(int ii = 0; ii < 50; ii++) 
+        	    { 
+        	        glVertex2d(x, y);//output vertex 
+
+        	        //apply the rotation matrix
+        	        t = x;
+        	        x = c * x - s * y;
+        	        y = s * t + c * y;
+        	    } 
+        	    glEnd();
+        		}
         		glPopMatrix();
         	}
         }
