@@ -12,7 +12,7 @@ public class PaddleView extends ViewComponent{
 	}
 
 	public void update(){
-		screen.fillRect((int)paddle.getX(),(int)paddle.getY(), paddle.getWidth(), paddle.getHeight(), Color.white);
+		screen.fillRect(paddle.getX(),paddle.getY(), paddle.getWidth(), paddle.getHeight(), Color.white);
 	}
 	
 	

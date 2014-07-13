@@ -5,6 +5,9 @@ import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 import static org.lwjgl.opengl.GL11.glEnable;
 import static org.lwjgl.opengl.GL11.glMatrixMode;
 import static org.lwjgl.opengl.GL11.glOrtho;
+import static org.lwjgl.opengl.GL11.glPushMatrix;
+import static org.lwjgl.opengl.GL11.glRotated;
+import static org.lwjgl.opengl.GL11.glTranslatef;
 
 import java.applet.Applet;
 import java.applet.AudioClip;
@@ -21,11 +24,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.World;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
+import Model.Physics.PhysicsObjectFactory;
 import View.ViewComponent;
 import static org.lwjgl.opengl.GL11.*;
 
@@ -33,12 +39,15 @@ import static org.lwjgl.opengl.GL11.*;
 public class Screen extends JFrame{
 
 	
-	public static int WIDTH = 1280;
-	public static int HEIGHT = 720;
+	public static double WIDTH = 1280;
+	public static double HEIGHT = 720;
 	
 	public static long lastFrameMS; 
 	public static int fps;
 	public static long lastFPS;
+	
+	public static World world = new World(new Vec2(0,0));
+	public static int PIXELS_PER_METER = 50;
 	
 	public Screen (int width, int height)
 	{
@@ -53,19 +62,20 @@ public class Screen extends JFrame{
 		
 		glClearColor(0.0f,0.0f,0.0f,1.0f);
         glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
+        //glLoadIdentity();
         glOrtho(0, width, height, 0, 1, -1);
-        //glMatrixMode(GL_MODELVIEW);        
+        glMatrixMode(GL_MODELVIEW);   
         
         
         ViewComponent.init(this);
-		WIDTH = width;
-		HEIGHT = height;	
+		WIDTH = (double)(width)/PIXELS_PER_METER;
+		HEIGHT = (double)(height)/PIXELS_PER_METER;	
 		lastFPS = getTime();
 	}
 	
 	public void update(){
 		updateFPS();
+		world.step(1/60f,8,3);
 	}
 	
 	public void setColor(Color c)
@@ -73,19 +83,27 @@ public class Screen extends JFrame{
 		glColor4f(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha());
 	}
 		
-	public void fillRect (int x, int y, int width, int height, Color c)
+	public void fillRect (double x, double y, double width, double height, double angle, Color c)
 	{
 		setColor(c);
-		glBegin(GL_QUADS);		 
-			glVertex2f(x,y);
-			glVertex2f(x+width,y);
-			glVertex2f(x+width,y+height);
-			glVertex2f(x,y+height);		 
-		glEnd();	   	
+		glPushMatrix();
+		glTranslated(x*PIXELS_PER_METER,y*PIXELS_PER_METER,0);
+		glRotated(Math.toDegrees(angle),0,0,1);
+		glRectd(0,0,width*PIXELS_PER_METER,height*PIXELS_PER_METER); 
+		glPopMatrix();
+	}
+	
+	public void fillRect(double x, double y, double width, double height, Color c){
+		fillRect(x,y,width,height,0,c);
 	}
 	
 	public void drawOval(double cx, double cy, double r, Color color, int num_segments) 
 	{ 
+		cx *= PIXELS_PER_METER;
+		cy *= PIXELS_PER_METER;
+		r *= PIXELS_PER_METER;
+		
+		
 		double theta = 2 * 3.1415926 / num_segments; 
 		double c = Math.cos(theta);//precalculate the sine and cosine
 		double s = Math.sin(theta);
@@ -114,6 +132,10 @@ public class Screen extends JFrame{
 	
 	public void fillOval(double cx, double cy, double r, Color color, int num_segments) 
 	{ 
+		cx *= PIXELS_PER_METER;
+		cy *= PIXELS_PER_METER;
+		r *= PIXELS_PER_METER;
+		
 		double theta = 2 * 3.1415926 / num_segments; 
 		double c = Math.cos(theta);//precalculate the sine and cosine
 		double s = Math.sin(theta);

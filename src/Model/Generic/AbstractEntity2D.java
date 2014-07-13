@@ -1,4 +1,4 @@
-package Model;
+package Model.Generic;
 
 public abstract class AbstractEntity2D implements Entity2D {
 	protected double x;

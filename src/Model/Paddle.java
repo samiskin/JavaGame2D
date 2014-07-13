@@ -1,6 +1,7 @@
 package Model;
 
 import Main.Screen;
+import Model.Generic.AbstractEntity2D;
 import View.*;
 import Controller.*;
 
@@ -27,12 +28,9 @@ public class Paddle extends AbstractEntity2D{
 		view.update();
 	}
 	
-	public void setControls(String controls){
-		if (controls == "WS")
-		{
-			control.setKeyCommand("UP","W");
-			control.setKeyCommand("DOWN","S");
-		}
+	public void setControls(String up, String down){
+		control.setKeyCommand("UP",up);
+		control.setKeyCommand("DOWN",down);
 	}
 	
 	public void moveUp(){
@@ -61,9 +59,6 @@ public class Paddle extends AbstractEntity2D{
 		return num >= lower && num < upper;
 	}
 
-	public boolean collides(Ball ball) {
-		return inRange(ball.x, x-ball.getRadius(),x+width+ball.getRadius()) && inRange(ball.y,y,y+height);
-	}
 	
 	
 }

@@ -1,4 +1,4 @@
-package Model;
+package Model.File;
 
 import java.io.BufferedReader;
 import java.util.ArrayList;

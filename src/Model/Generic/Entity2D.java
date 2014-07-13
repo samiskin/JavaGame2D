@@ -1,4 +1,4 @@
-package Model;
+package Model.Generic;
 
 public interface Entity2D {
 	public double getX();

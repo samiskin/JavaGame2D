@@ -1,4 +1,4 @@
-package Model;
+package Model.File;
 
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
