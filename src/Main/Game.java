@@ -8,7 +8,7 @@ import org.newdawn.slick.opengl.TextureLoader;
 import Controller.InputComponent;
 import Model.File.FileReader;
 import Model.File.FileWriter;
-import Model.Physics.Physics;
+import Model.Physics.World;
 import View.Image;
 
 import java.awt.Color;
@@ -23,11 +23,14 @@ public class Game {
 	static Screen screen;
 	public static long timeDelta;
 	private Image img;
+	public static int MAX_FPS = 60;
 	
 	public Game(int width, int height){
         screen = new Screen(width,height);
+        
         InputComponent.init();
-        Physics.init(Screen.world);
+        
+        
 
 	
 	}
@@ -39,7 +42,7 @@ public class Game {
     		screen.update();		
             update();
             Display.update();
-            Display.sync(60);
+            Display.sync(MAX_FPS);
         }
         
 

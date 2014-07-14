@@ -25,13 +25,12 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.World;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
-import Model.Physics.Physics;
+import Model.Physics.World;
 import View.ViewComponent;
 import static org.lwjgl.opengl.GL11.*;
 
@@ -46,36 +45,46 @@ public class Screen extends JFrame{
 	public static int fps;
 	public static long lastFPS;
 	
-	public static World world = new World(new Vec2(0,0));
 	public static int PIXELS_PER_METER = 50;
+	public static int[] WINDOW_DIMENSIONS;
 	
 	public Screen (int width, int height)
 	{
-		try {
-            Display.setDisplayMode(new DisplayMode(width, height));
-            Display.create();
-        } catch (LWJGLException e) {
-            e.printStackTrace();
-            Display.destroy();
-            System.exit(1);
-        }
-		
-		glClearColor(0.0f,0.0f,0.0f,1.0f);
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-        glOrtho(0, width, height, 0, 1, -1);
-        glMatrixMode(GL_MODELVIEW);   
+		WINDOW_DIMENSIONS = new int[2];
+		WINDOW_DIMENSIONS[0] = width;
+		WINDOW_DIMENSIONS[1] = height;
+        setUpDisplay();
+        setUpMatrices();
         
-        
+		        
         ViewComponent.init(this);
 		WIDTH = (double)(width)/PIXELS_PER_METER;
 		HEIGHT = (double)(height)/PIXELS_PER_METER;	
 		lastFPS = getTime();
 	}
 	
+    private static void setUpDisplay() {
+        try {
+            Display.setDisplayMode(new DisplayMode(WINDOW_DIMENSIONS[0], WINDOW_DIMENSIONS[1]));
+            Display.setTitle("Game");
+            Display.create();
+        } catch (LWJGLException e) {
+            e.printStackTrace();
+            cleanUp(true);
+        }
+    }
+    
+    private static void setUpMatrices(){
+    	glClearColor(0.0f,0.0f,0.0f,1.0f);
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        glOrtho(0, WINDOW_DIMENSIONS[0], WINDOW_DIMENSIONS[1], 0, 1, -1);
+        glMatrixMode(GL_MODELVIEW);   
+        
+    }
+	
 	public void update(){
 		updateFPS();
-		world.step(1/60f,8,3);
 	}
 	
 	public void setColor(Color c)
@@ -187,4 +196,9 @@ public class Screen extends JFrame{
 	public static long getTime() {
 	    return (Sys.getTime() * 1000) / Sys.getTimerResolution();
 	}
+	
+    private static void cleanUp(boolean asCrash) {
+        Display.destroy();
+        System.exit(asCrash ? 1 : 0);
+    }
 }

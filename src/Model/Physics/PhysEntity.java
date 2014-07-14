@@ -63,6 +63,10 @@ public class PhysEntity implements Entity2D{
 		return bodyDef.position.y;
 	}
 
+	public void update() {
+		
+	}
+
 	
 	
 }
