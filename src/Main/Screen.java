@@ -31,7 +31,7 @@ import org.lwjgl.Sys;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
-import Model.Physics.PhysicsObjectFactory;
+import Model.Physics.Physics;
 import View.ViewComponent;
 import static org.lwjgl.opengl.GL11.*;
 
@@ -62,7 +62,7 @@ public class Screen extends JFrame{
 		
 		glClearColor(0.0f,0.0f,0.0f,1.0f);
         glMatrixMode(GL_PROJECTION);
-        //glLoadIdentity();
+        glLoadIdentity();
         glOrtho(0, width, height, 0, 1, -1);
         glMatrixMode(GL_MODELVIEW);   
         
@@ -160,6 +160,14 @@ public class Screen extends JFrame{
 	
 	public void fillOval(double cx, double cy, double r, Color color){
 		fillOval(cx,cy,r,color,(int)(Math.max(r/2,15)));
+	}
+	
+	public static double toPixels(double meters){
+		return meters*PIXELS_PER_METER;
+	}
+	
+	public static double toMeters(double pixels){
+		return pixels/PIXELS_PER_METER;
 	}
 	
 	public static void updateFPS() {

@@ -9,13 +9,20 @@ import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
+import Model.Generic.Vec;
 
-public class PhysicsObjectFactory {
+
+public class Physics {
 
 	public static World world;
 	
 	public static void init(World world){
-		PhysicsObjectFactory.world = world;
+		Physics.world = world;
+	}
+	
+	
+	public static void setGravity(double gx, double gy){
+		world.setGravity(new Vec(gx,gy));
 	}
 	
 	

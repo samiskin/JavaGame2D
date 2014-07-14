@@ -8,7 +8,7 @@ import org.newdawn.slick.opengl.TextureLoader;
 import Controller.InputComponent;
 import Model.File.FileReader;
 import Model.File.FileWriter;
-import Model.Physics.PhysicsObjectFactory;
+import Model.Physics.Physics;
 import View.Image;
 
 import java.awt.Color;
@@ -27,7 +27,7 @@ public class Game {
 	public Game(int width, int height){
         screen = new Screen(width,height);
         InputComponent.init();
-        PhysicsObjectFactory.init(Screen.world);
+        Physics.init(Screen.world);
 
 	
 	}
