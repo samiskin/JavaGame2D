@@ -13,13 +13,13 @@ public class PhysicsTest extends Game{
 	
 	private ArrayList<PhysEntity> bodies;
 	private World world;
-	private final double GRAVITY = 9.81;
+	private final double GRAVITY = -9.81;
 	
 	public PhysicsTest() {
 		super(1280, 720);
 		world = new World(GRAVITY);
 		bodies = new ArrayList<PhysEntity>();
-		PhysRect floor = world.createStaticRect(0, Screen.HEIGHT, Screen.WIDTH, 0);
+		PhysRect floor = world.createStaticRect(0, 0, Screen.WIDTH, 0);
 		floor.setRestitution(0.9);
 		bodies.add(floor);
 		Game.MAX_FPS = 30;
@@ -30,7 +30,7 @@ public class PhysicsTest extends Game{
 		
 		while (Mouse.next()){
 		if (Mouse.isButtonDown(0)){
-			bodies.add(world.createDynamicCircle(Mouse.getX()/Screen.PIXELS_PER_METER, Mouse.getY()/Screen.PIXELS_PER_METER, Math.random()*2));
+			bodies.add(world.createDynamicCircle(Mouse.getX()/Screen.PIXELS_PER_METER, Mouse.getY()/Screen.PIXELS_PER_METER, Math.random()*1+0.3));
 		}
 		}
 		world.update();

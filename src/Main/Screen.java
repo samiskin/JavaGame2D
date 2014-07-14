@@ -45,7 +45,7 @@ public class Screen extends JFrame{
 	public static int fps;
 	public static long lastFPS;
 	
-	public static int PIXELS_PER_METER = 50;
+	public static double PIXELS_PER_METER = 50;
 	public static int[] WINDOW_DIMENSIONS;
 	
 	public Screen (int width, int height)
@@ -78,7 +78,7 @@ public class Screen extends JFrame{
     	glClearColor(0.0f,0.0f,0.0f,1.0f);
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        glOrtho(0, WINDOW_DIMENSIONS[0], WINDOW_DIMENSIONS[1], 0, 1, -1);
+        glOrtho(0, WINDOW_DIMENSIONS[0], 0,WINDOW_DIMENSIONS[1], 1, -1);
         glMatrixMode(GL_MODELVIEW);   
         
     }
