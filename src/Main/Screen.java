@@ -45,7 +45,7 @@ public class Screen extends JFrame{
 	public static int fps;
 	public static long lastFPS;
 	
-	public static double PIXELS_PER_METER = 50;
+	public static double PIXELS_PER_METER = 1;
 	public static int[] WINDOW_DIMENSIONS;
 	
 	public Screen (int width, int height)

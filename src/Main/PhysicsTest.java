@@ -1,5 +1,6 @@
 package Main;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import org.lwjgl.input.Mouse;
@@ -13,7 +14,7 @@ public class PhysicsTest extends Game{
 	
 	private ArrayList<PhysEntity> bodies;
 	private World world;
-	private final double GRAVITY = -9.81;
+	private final double GRAVITY = -458.1;
 	
 	public PhysicsTest() {
 		super(1280, 720);
@@ -29,9 +30,12 @@ public class PhysicsTest extends Game{
 	public void update(){
 		
 		while (Mouse.next()){
-		if (Mouse.isButtonDown(0)){
-			bodies.add(world.createDynamicCircle(Mouse.getX()/Screen.PIXELS_PER_METER, Mouse.getY()/Screen.PIXELS_PER_METER, Math.random()*1+0.3));
-		}
+			if (Mouse.isButtonDown(0)){
+				bodies.add(world.createDynamicCircle(Mouse.getX()/Screen.PIXELS_PER_METER, Mouse.getY()/Screen.PIXELS_PER_METER, Math.random()*100+30));
+			} else if (Mouse.isButtonDown(1)){
+				System.out.println("Making Rect");
+				bodies.add(world.createDynamicRect(Mouse.getX()/Screen.PIXELS_PER_METER, Mouse.getY()/Screen.PIXELS_PER_METER, 200, 20));
+			}
 		}
 		world.update();
 		for (PhysEntity body : bodies){

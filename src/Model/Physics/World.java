@@ -53,6 +53,7 @@ public class World extends org.jbox2d.dynamics.World{
 		shape.setAsBox((float)(width/2),(float)(height/2));
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.position.set((float)(x+width/2),(float)(y+height/2));
+		bodyDef.type = BodyType.STATIC;
 		Body body = createBody(bodyDef);
 		FixtureDef fixtureDef = new FixtureDef();
     	fixtureDef.density = 1f;
@@ -61,6 +62,25 @@ public class World extends org.jbox2d.dynamics.World{
     	fixtureDef.shape = shape;
 		Fixture fixture = body.createFixture(fixtureDef);
 		PhysRect rect = new PhysRect(body,fixture,bodyDef,shape);
+		rect.setSize(width, height);
+    	return rect;
+	}
+	
+	public PhysRect createDynamicRect(double x, double y, double width, double height){
+		PolygonShape shape = new PolygonShape();
+		shape.setAsBox((float)(width/2),(float)(height/2));
+		BodyDef bodyDef = new BodyDef();
+		bodyDef.position.set((float)(x+width/2),(float)(y+height/2));
+		bodyDef.type = BodyType.DYNAMIC;
+		Body body = createBody(bodyDef);
+		FixtureDef fixtureDef = new FixtureDef();
+    	fixtureDef.density = 1f;
+    	fixtureDef.restitution = 0f;
+    	fixtureDef.friction = 0f;
+    	fixtureDef.shape = shape;
+		Fixture fixture = body.createFixture(fixtureDef);
+		PhysRect rect = new PhysRect(body,fixture,bodyDef,shape);
+		rect.setSize(width, height);
     	return rect;
 	}
 	

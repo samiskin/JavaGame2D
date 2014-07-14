@@ -24,11 +24,11 @@ public class PhysRect extends PhysEntity implements Rect{
 	}
 
 	public double getX(){
-		return bodyDef.position.x-width/2;		
+		return super.getX()-width/2;		
 	}
 	
 	public double getY(){
-		return bodyDef.position.y-width/2;
+		return super.getY()-height/2;
 	}
 	
 	public double getWidth() {
@@ -67,7 +67,6 @@ public class PhysRect extends PhysEntity implements Rect{
 
 	public void update() {
 		view.update();
-		
 	}
 
 }

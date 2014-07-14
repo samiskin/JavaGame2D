@@ -19,7 +19,7 @@ public class Pong extends Game{
 		//paddleLeft = new Paddle(0,Screen.HEIGHT/2,10,100);
 		//paddleRight = new Paddle(Screen.WIDTH-10,Screen.HEIGHT/2,10,100);
 		//paddleLeft.setControls("W","S");
-		world = new World(9.81);
+		world = new World(-9.81);
 		ball = world.createDynamicCircle(Screen.WIDTH/2, Screen.HEIGHT/2,Screen.toMeters(25));
 		ball.setVel(0.1, 5);
 		ball.setLocation(1, 1);
@@ -47,7 +47,7 @@ public class Pong extends Game{
 	}
 	
 	
-    /*public static void main(String args[]) {
+    public static void main(String args[]) {
     	Game game = new Pong();
-    }*/
+    }
 }
