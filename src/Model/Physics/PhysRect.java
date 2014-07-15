@@ -39,6 +39,14 @@ public class PhysRect extends PhysEntity implements Rect{
 		return height;
 	}
 	
+	public double getAngle(){
+		return body.getAngle();
+	}
+	
+	public void setAngle(double radians){
+		return;
+	}
+	
 	public void setSize(double width, double height){
 		this.width = width;
 		this.height = height;
@@ -54,15 +62,15 @@ public class PhysRect extends PhysEntity implements Rect{
 	}
 	
 	public void setX(double x) {
-		bodyDef.position.x = (float)(x+width/2);
+		setLocation(x,getY());
 	}
 
 	public void setY(double y) {
-		bodyDef.position.y = (float)(y+width/2);
+		setLocation(getX(),y);
 	}
 
 	public void setLocation(double x, double y) {
-		bodyDef.position.set((float)x,(float)y);
+		super.setLocation(x+width/2, y+height/2);
 	}
 
 	public void update() {

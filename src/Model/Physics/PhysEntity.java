@@ -53,6 +53,10 @@ public class PhysEntity implements Entity2D{
 		bodyDef.position.set((float)x,(float)y);
 	}
 	
+	public void setFriction(double friction){
+		fixture.m_friction = (float)friction;
+	}
+	
 	public float moveX(double dx){
 		bodyDef.position.x += dx;
 		return bodyDef.position.x;

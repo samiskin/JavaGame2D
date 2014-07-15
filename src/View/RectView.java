@@ -13,8 +13,7 @@ public class RectView extends ViewComponent{
 	}
 	
 	public void update() {
-		System.out.println(rect.getX() + ", " + rect.getY()+ " : " + rect.getWidth() + ", " + rect.getHeight());
-		screen.fillRect(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight(), Color.white);		
+		screen.fillRect(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight(), rect.getAngle(),Color.white);		
 	}
 	
 	

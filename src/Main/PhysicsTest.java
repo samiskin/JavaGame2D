@@ -14,14 +14,15 @@ public class PhysicsTest extends Game{
 	
 	private ArrayList<PhysEntity> bodies;
 	private World world;
-	private final double GRAVITY = -458.1;
+	private final double GRAVITY = -9.81;
 	
 	public PhysicsTest() {
-		super(1280, 720);
+		super(1280,720);
 		world = new World(GRAVITY);
 		bodies = new ArrayList<PhysEntity>();
 		PhysRect floor = world.createStaticRect(0, 0, Screen.WIDTH, 0);
-		floor.setRestitution(0.9);
+		floor.setRestitution(0.5);
+		floor.setFriction(1);
 		bodies.add(floor);
 		Game.MAX_FPS = 30;
 		start();
@@ -31,10 +32,13 @@ public class PhysicsTest extends Game{
 		
 		while (Mouse.next()){
 			if (Mouse.isButtonDown(0)){
-				bodies.add(world.createDynamicCircle(Mouse.getX()/Screen.PIXELS_PER_METER, Mouse.getY()/Screen.PIXELS_PER_METER, Math.random()*100+30));
+				PhysEntity body = world.createDynamicCircle(Screen.toMeters(Mouse.getX()),Screen.toMeters(Mouse.getY()), 1);
+				body.setFriction(1);
+				bodies.add(body);
 			} else if (Mouse.isButtonDown(1)){
-				System.out.println("Making Rect");
-				bodies.add(world.createDynamicRect(Mouse.getX()/Screen.PIXELS_PER_METER, Mouse.getY()/Screen.PIXELS_PER_METER, 200, 20));
+				PhysEntity body = world.createDynamicRect(Screen.toMeters(Mouse.getX()),Screen.toMeters(Mouse.getY()), 5, 0.5);
+				body.setFriction(1);
+				bodies.add(body);				
 			}
 		}
 		world.update();

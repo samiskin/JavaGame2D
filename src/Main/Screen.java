@@ -45,7 +45,7 @@ public class Screen extends JFrame{
 	public static int fps;
 	public static long lastFPS;
 	
-	public static double PIXELS_PER_METER = 1;
+	public static double PIXELS_PER_METER = 30;
 	public static int[] WINDOW_DIMENSIONS;
 	
 	public Screen (int width, int height)
@@ -94,11 +94,15 @@ public class Screen extends JFrame{
 		
 	public void fillRect (double x, double y, double width, double height, double angle, Color c)
 	{
+		width = toPixels(width);
+		height = toPixels(height);
+		x = toPixels(x);
+		y = toPixels(y);
 		setColor(c);
 		glPushMatrix();
-		glTranslated(x*PIXELS_PER_METER,y*PIXELS_PER_METER,0);
+		glTranslated(x+width/2,y+height/2,0);
 		glRotated(Math.toDegrees(angle),0,0,1);
-		glRectd(0,0,width*PIXELS_PER_METER,height*PIXELS_PER_METER); 
+		glRectd(-width/2,-height/2,width/2,height/2); 
 		glPopMatrix();
 	}
 	
