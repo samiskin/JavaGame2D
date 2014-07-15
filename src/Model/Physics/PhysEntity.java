@@ -25,6 +25,17 @@ public class PhysEntity implements Entity2D{
 		
 	}
 	
+	public PhysEntity(PhysEntity src){
+		this.body = src.body;
+		this.fixture = src.fixture;
+		this.bodyDef = src.bodyDef;
+		this.shape = src.shape;
+	}
+	
+	public PhysEntity clone(){
+		return new PhysEntity(this);
+	}
+	
 	public double getX(){
 		return body.getPosition().x;
 	}
