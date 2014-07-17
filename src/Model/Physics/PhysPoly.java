@@ -23,16 +23,16 @@ public class PhysPoly extends PhysEntity implements Poly{
 	}
 
 	
-	public Vec[] getPoints() {		
-		Vec[] points = new Vec[shape.m_vertices.length];
+	public Vec2[] getPoints() {		
+		Vec2[] points = new Vec2[shape.m_vertices.length];
 		for (int i = 0; i < points.length; i++){
-			points[i] = new Vec(shape.m_vertices[i]);
+			points[i] = shape.m_vertices[i];
 		}
 		return points;
 	}
 
 	@Override
-	public Vec getPoint(int i) {
+	public Vec2 getPoint(int i) {
 		// TODO Auto-generated method stub
 		return null;
 	}

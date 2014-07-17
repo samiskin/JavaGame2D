@@ -30,6 +30,7 @@ import org.lwjgl.Sys;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
+import Model.Generic.Vec;
 import Model.Physics.World;
 import View.ViewComponent;
 import static org.lwjgl.opengl.GL11.*;
@@ -38,13 +39,13 @@ import static org.lwjgl.opengl.GL11.*;
 public class Screen extends JFrame{
 
 	
-	public static double WIDTH, HEIGHT, CENTER_X, CENTER_Y;
+	public static double WIDTH, HEIGHT;
 	
 	public static long lastFrameMS; 
 	public static int fps;
 	public static long lastFPS;
 	
-	public static double PIXELS_PER_METER = 30;
+	public static double PIXELS_PER_METER;
 	public static int[] WINDOW_DIMENSIONS;
 	
 	public Screen (int width, int height)
@@ -54,13 +55,11 @@ public class Screen extends JFrame{
 		WINDOW_DIMENSIONS[1] = height;
         setUpDisplay();
         setUpMatrices();
-        
+        PIXELS_PER_METER = 1;
 		        
         ViewComponent.init(this);
 		WIDTH = (double)(width)/PIXELS_PER_METER;
-		HEIGHT = (double)(height)/PIXELS_PER_METER;	
-		CENTER_X = WIDTH/2;
-		CENTER_Y = HEIGHT/2;
+		HEIGHT = (double)(height)/PIXELS_PER_METER;
 		lastFPS = getTime();
 	}
 	
@@ -80,20 +79,22 @@ public class Screen extends JFrame{
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         glOrtho(0, WINDOW_DIMENSIONS[0], 0,WINDOW_DIMENSIONS[1], 1, -1);
-        glMatrixMode(GL_MODELVIEW);   
+        glMatrixMode(GL_MODELVIEW);  
+        glEnable(GL_BLEND); 
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         
     }
 	
-	public void update(){
+	public static void update(){
 		updateFPS();
 	}
 	
-	public void setColor(Color c)
+	public static void setColor(Color c)
 	{		
 		glColor4f(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha());
 	}
 		
-	public void fillRect (double x, double y, double width, double height, double angle, Color c)
+	public static void fillRect (double x, double y, double width, double height, double angle, Color c)
 	{
 		width = toPixels(width);
 		height = toPixels(height);
@@ -101,17 +102,17 @@ public class Screen extends JFrame{
 		y = toPixels(y);
 		setColor(c);
 		glPushMatrix();
-		glTranslated(x+width/2,y+height/2,0);
+		glTranslated(x,y,0);
 		glRotated(Math.toDegrees(angle),0,0,1);
 		glRectd(-width/2,-height/2,width/2,height/2); 
 		glPopMatrix();
 	}
 	
-	public void fillRect(double x, double y, double width, double height, Color c){
+	public static void fillRect(double x, double y, double width, double height, Color c){
 		fillRect(x,y,width,height,0,c);
 	}
 	
-	public void drawOval(double cx, double cy, double r, Color color, int num_segments) 
+	public static void drawOval(double cx, double cy, double r, Color color, int num_segments) 
 	{ 
 		cx *= PIXELS_PER_METER;
 		cy *= PIXELS_PER_METER;
@@ -140,11 +141,11 @@ public class Screen extends JFrame{
 	    glEnd(); 
 	}
 	
-	public void drawOval(double cx, double cy, double r, Color color){
+	public static void drawOval(double cx, double cy, double r, Color color){
 		drawOval(cx,cy,r,color,(int)(Math.max(r/2,15)));
 	}
 	
-	public void fillOval(double cx, double cy, double r, Color color, int num_segments) 
+	public static void fillOval(double cx, double cy, double r, Color color, int num_segments) 
 	{ 
 		cx *= PIXELS_PER_METER;
 		cy *= PIXELS_PER_METER;
@@ -172,12 +173,12 @@ public class Screen extends JFrame{
 	    glEnd(); 
 	}
 	
-	public void fillOval(double cx, double cy, double r, Color color){
+	public static void fillOval(double cx, double cy, double r, Color color){
 		fillOval(cx,cy,r,color,(int)(Math.max(r/2,15)));
 	}
 	
-	public static double toPixels(double meters){
-		return meters*PIXELS_PER_METER;
+	public static int toPixels(double meters){
+		return (int)(meters*PIXELS_PER_METER);
 	}
 	
 	public static double toMeters(double pixels){
@@ -205,5 +206,15 @@ public class Screen extends JFrame{
     private static void cleanUp(boolean asCrash) {
         Display.destroy();
         System.exit(asCrash ? 1 : 0);
+    }
+    
+    public static void setPixelsPerMeter(double ppm){
+    	PIXELS_PER_METER = ppm;
+		WIDTH = (double)(WINDOW_DIMENSIONS[0])/PIXELS_PER_METER;
+		HEIGHT = (double)(WINDOW_DIMENSIONS[1])/PIXELS_PER_METER;
+    }
+    
+    public static Vec2 getCenter(){
+		return new Vec(WIDTH/2,HEIGHT/2);
     }
 }

@@ -21,6 +21,7 @@ public class PhysicsTest extends Game{
 		world = new World(GRAVITY);
 		bodies = new ArrayList<PhysEntity>();
 		PhysRect floor = world.createStaticRect(0, 0, Screen.WIDTH, 0);
+		Screen.setPixelsPerMeter(30);
 		floor.setRestitution(0.5);
 		floor.setFriction(1);		
 		bodies.add(floor);
@@ -42,7 +43,6 @@ public class PhysicsTest extends Game{
 				bodies.add(body);				
 			}			
 		}
-		
 		
 		world.update();
 		for (PhysEntity body : bodies){

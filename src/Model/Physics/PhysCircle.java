@@ -15,10 +15,15 @@ import View.ViewComponent;
 
 public class PhysCircle extends PhysEntity implements Circle{
 
-	private ViewComponent view;
+	protected ViewComponent view;
 	
 	public PhysCircle(Body body, Fixture fixture, BodyDef bodyDef, Shape shape) {
 		super(body,fixture,bodyDef,shape);		
+		view = new CircleView(this);
+	}
+	
+	public PhysCircle(PhysEntity entity){
+		super(entity);
 		view = new CircleView(this);
 	}
 	

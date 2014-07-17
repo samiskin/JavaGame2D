@@ -6,6 +6,7 @@ import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
+import Main.Screen;
 import static org.lwjgl.opengl.GL11.*;
 
 public class Image {
@@ -20,22 +21,27 @@ public class Image {
 		texture = TextureLoader.getTexture(fileType, ResourceLoader.getResourceAsStream(path));
 	}
 	
-	public void draw(int x, int y, int width, int height){
-
+	public void draw(double x,double y,double width,double height){
+		
+		x = Screen.toPixels(x);
+		y = Screen.toPixels(y);
+		width = Screen.toPixels(width);
+		height = Screen.toPixels(height);
         glEnable(GL_TEXTURE_2D);
 		glColor3f(1f,1f,1f);
 		texture.bind();
-        glBegin(GL_TRIANGLE_STRIP);
+        glBegin(GL_QUADS);
         glTexCoord2f(1, 0);
-        glVertex2i(x+width, y);
+        glVertex2d(x+width, y);
         glTexCoord2f(0, 0);
-        glVertex2i(x, y);
+        glVertex2d(x, y);
         glTexCoord2f(0, 1);
-        glVertex2i(x, y+height);
+        glVertex2d(x, y+height);
         glTexCoord2f(1, 1);
-        glVertex2i(x+width, y+height);
+        glVertex2d(x+width, y+height);
         glEnd();		
         glDisable(GL_TEXTURE_2D);
 	}
+	
 
 }

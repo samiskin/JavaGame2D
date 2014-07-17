@@ -22,14 +22,6 @@ public class PhysRect extends PhysEntity implements Rect{
 		super(body, fixture,bodyDef,shape);
 		view = new RectView(this);
 	}
-
-	public double getX(){
-		return super.getX()-width/2;		
-	}
-	
-	public double getY(){
-		return super.getY()-height/2;
-	}
 	
 	public double getWidth() {
 		return width;
@@ -56,10 +48,6 @@ public class PhysRect extends PhysEntity implements Rect{
 	
 	public void setHeight(double height){
 		setSize(width, height);
-	}
-
-	public void setLocation(double x, double y) {
-		super.setLocation(x+width/2, y+height/2);
 	}
 
 	public void update() {

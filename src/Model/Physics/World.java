@@ -13,8 +13,9 @@ import org.jbox2d.dynamics.FixtureDef;
 import Main.Game;
 import Model.Generic.Vec;
 
-
 public class World extends org.jbox2d.dynamics.World{
+
+	public static final double GRAVITY_CONST = 6.67384;
 	
 	public World(double gravityY){
 		this(0,gravityY);
@@ -90,7 +91,7 @@ public class World extends org.jbox2d.dynamics.World{
 	public PhysRect createStaticRect (double x, double y, double width, double height){
 
 		PolygonShape shape = getRectShape(width,height);
-		BodyDef bodyDef = getBodyDef(x+width/2,y+height/2,BodyType.STATIC);
+		BodyDef bodyDef = getBodyDef(x,y,BodyType.STATIC);
 		Body body = createBody(bodyDef);
 		FixtureDef fixtureDef = getFixtureDef(1,0,0,shape);
 		Fixture fixture = body.createFixture(fixtureDef);
@@ -101,7 +102,7 @@ public class World extends org.jbox2d.dynamics.World{
 	
 	public PhysRect createDynamicRect(double x, double y, double width, double height){
 		PolygonShape shape = getRectShape(width,height);
-		BodyDef bodyDef = getBodyDef(x+width/2,y+width/2,BodyType.DYNAMIC);
+		BodyDef bodyDef = getBodyDef(x,y,BodyType.DYNAMIC);
 		Body body = createBody(bodyDef);
 		FixtureDef fixtureDef = getFixtureDef(1,0,0,shape);
 		Fixture fixture = body.createFixture(fixtureDef);

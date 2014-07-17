@@ -18,7 +18,5 @@ public class Vec extends Vec2{
 	public void set (double x, double y){
 		super.set((float)x,(float)y);
 	}
-	
-	
 
 }

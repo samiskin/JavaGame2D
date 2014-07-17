@@ -1,6 +1,9 @@
 package Model.Generic;
 
+import org.jbox2d.common.Vec2;
+
+
 public interface Poly {
-	public Vec[] getPoints();
-	public Vec getPoint(int i);
+	public Vec2[] getPoints();
+	public Vec2 getPoint(int i);
 }

@@ -33,20 +33,36 @@ public class PhysEntity implements Entity2D{
 		this.shape = src.shape;
 	}
 	
+	
+	public void applyForceTo(PhysEntity target, double coeff){
+		Vec2 force = target.getPosition().sub(getPosition());
+		double mag = (coeff*getMass()*target.getMass())/force.lengthSquared();
+		force.normalize();
+		
+		force = force.mul((float)mag);
+
+		target.applyForce(force);
+	}
+	
 	public PhysEntity clone(){
 		return new PhysEntity(this);
 	}
 	
-	public double getX(){
-		return body.getPosition().x;
-	}
-
-	public double getY() {
-		return body.getPosition().y;
+	public float getMass(){
+		return body.getMass();
 	}
 	
-	public Vec getPosition(){
-		return new Vec(body.getPosition());
+	public double getX(){
+		return getPosition().x;
+	}
+	
+
+	public double getY() {
+		return getPosition().y;
+	}
+	
+	public Vec2 getPosition(){
+		return body.getPosition();
 	}
 	
 	
@@ -55,33 +71,37 @@ public class PhysEntity implements Entity2D{
 		return body.getAngularVelocity();
 	}
 	
-	public Vec getLinearVelocity()
+	public Vec2 getLinearVelocity()
 	{
-		return new Vec(body.getLinearVelocity());
+		return body.getLinearVelocity();
 	}
 	
 	public double getAngle(){
 		return body.getAngle();
 	}
 	
-	public void applyForce(Vec force){
+	public void applyForce(Vec2 force){
 		body.applyForceToCenter(force);
 	}
 	
-	public void applyForce(Vec force, Vec point){
+	public void applyForce(Vec2 force, Vec2 point){
 		body.applyForce(force, point);
 	}
 
 	public void setX(double x) {
-		setLocation(x,getY());
+		setPosition(x,getY());
 	}
 
 	public void setY(double y) {
-		setLocation(getX(),y);
+		setPosition(getX(),y);
 	}
 	
 	public void setDensity(double density){
 		body.m_fixtureList.m_density = (float) density;
+	}
+	
+	public void setMass(double mass){
+		body.m_mass = (float)mass;
 	}
 	
 	public void setActive(boolean active){
@@ -93,10 +113,10 @@ public class PhysEntity implements Entity2D{
 	}
 	
 	public void setVel(double x, double y){
-		body.setLinearVelocity(new Vec2((float)x,(float)y));
+		body.setLinearVelocity(new Vec(x,y));
 	}
 	
-	public void setLinearVelocity(Vec v){
+	public void setLinearVelocity(Vec2 v){
 		body.setLinearVelocity(v);
 	}
 	
@@ -104,12 +124,12 @@ public class PhysEntity implements Entity2D{
 		body.setAngularVelocity((float)w);
 	}
 
-	public void setLocation(double x, double y) {
-		setLocation(new Vec(x,y));
+	public void setPosition(double x, double y) {
+		setPosition(new Vec(x,y));
 	}
 	
-	public void setLocation(Vec v){
-		body.setTransform(v, body.getAngle());
+	public void setPosition(Vec2 vec2){
+		body.setTransform(vec2, body.getAngle());
 	}
 	
 	public void setFriction(double friction){
@@ -117,7 +137,8 @@ public class PhysEntity implements Entity2D{
 	}
 	
 	public float moveX(double dx){
-		bodyDef.position.x += dx;
+		
+		setPosition(getPosition().add(new Vec(dx,0)));
 		return bodyDef.position.x;
 	}
 	
@@ -130,6 +151,8 @@ public class PhysEntity implements Entity2D{
 		
 	}
 
-	
+	public Vec2 distanceTo(PhysEntity other){
+		return other.getPosition().sub(getPosition());
+	}
 	
 }

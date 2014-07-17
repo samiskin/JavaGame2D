@@ -22,7 +22,7 @@ public class Pong extends Game{
 		world = new World(0);
 		ball = world.createDynamicCircle(Screen.WIDTH/2, Screen.HEIGHT/2,Screen.toMeters(25));		
 		ball.setVel(0.1, 5);
-		ball.setLocation(1, 1);
+		ball.setPosition(1, 1);
 		
 		
 		
