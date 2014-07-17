@@ -38,8 +38,7 @@ import static org.lwjgl.opengl.GL11.*;
 public class Screen extends JFrame{
 
 	
-	public static double WIDTH = 1280;
-	public static double HEIGHT = 720;
+	public static double WIDTH, HEIGHT, CENTER_X, CENTER_Y;
 	
 	public static long lastFrameMS; 
 	public static int fps;
@@ -60,6 +59,8 @@ public class Screen extends JFrame{
         ViewComponent.init(this);
 		WIDTH = (double)(width)/PIXELS_PER_METER;
 		HEIGHT = (double)(height)/PIXELS_PER_METER;	
+		CENTER_X = WIDTH/2;
+		CENTER_Y = HEIGHT/2;
 		lastFPS = getTime();
 	}
 	

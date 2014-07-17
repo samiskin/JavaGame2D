@@ -9,6 +9,7 @@ import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 import Model.Generic.Entity2D;
+import Model.Generic.Vec;
 
 public class PhysEntity implements Entity2D{
 
@@ -42,16 +43,51 @@ public class PhysEntity implements Entity2D{
 
 	public double getY() {
 		return body.getPosition().y;
-	}	
+	}
+	
+	public Vec getPosition(){
+		return new Vec(body.getPosition());
+	}
+	
+	
+	public double getAngularVelocity()
+	{
+		return body.getAngularVelocity();
+	}
+	
+	public Vec getLinearVelocity()
+	{
+		return new Vec(body.getLinearVelocity());
+	}
+	
+	public double getAngle(){
+		return body.getAngle();
+	}
+	
+	public void applyForce(Vec force){
+		body.applyForceToCenter(force);
+	}
+	
+	public void applyForce(Vec force, Vec point){
+		body.applyForce(force, point);
+	}
 
 	public void setX(double x) {
-		bodyDef.position.x = (float)x;
+		setLocation(x,getY());
 	}
 
 	public void setY(double y) {
-		bodyDef.position.y = (float)y;
+		setLocation(getX(),y);
 	}
 	
+	public void setDensity(double density){
+		body.m_fixtureList.m_density = (float) density;
+	}
+	
+	public void setActive(boolean active){
+		body.setActive(active);
+	}
+		
 	public void setRestitution(double restitution){
 		fixture.m_restitution = (float)restitution;
 	}
@@ -59,9 +95,21 @@ public class PhysEntity implements Entity2D{
 	public void setVel(double x, double y){
 		body.setLinearVelocity(new Vec2((float)x,(float)y));
 	}
+	
+	public void setLinearVelocity(Vec v){
+		body.setLinearVelocity(v);
+	}
+	
+	public void setAngularVelocity(double w){
+		body.setAngularVelocity((float)w);
+	}
 
 	public void setLocation(double x, double y) {
-		bodyDef.position.set((float)x,(float)y);
+		setLocation(new Vec(x,y));
+	}
+	
+	public void setLocation(Vec v){
+		body.setTransform(v, body.getAngle());
 	}
 	
 	public void setFriction(double friction){

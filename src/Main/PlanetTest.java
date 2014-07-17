@@ -3,28 +3,30 @@ package Main;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import org.jbox2d.common.Vec2;
 import org.lwjgl.input.Mouse;
 
 import Model.Physics.PhysCircle;
 import Model.Physics.PhysEntity;
+import Model.Physics.PhysPoly;
 import Model.Physics.PhysRect;
 import Model.Physics.World;
 
-public class PhysicsTest extends Game{
+public class PlanetTest extends Game{
 	
 	private ArrayList<PhysEntity> bodies;
 	private World world;
 	private final double GRAVITY = -9.81;
 	
-	public PhysicsTest() {
-		super(1280,640);
+	public PlanetTest() {
+		super(480,320);
 		world = new World(GRAVITY);
 		bodies = new ArrayList<PhysEntity>();
-		PhysRect floor = world.createStaticRect(0, 0, Screen.WIDTH, 0);
-		floor.setRestitution(0.5);
-		floor.setFriction(1);		
-		bodies.add(floor);
 		Game.MAX_FPS = 30;
+		
+		PhysCircle planet = world.createDynamicCircle(Screen.CENTER_X, Screen.CENTER_Y, 5);
+		
+		
 		start();
 	}
 	
@@ -50,9 +52,5 @@ public class PhysicsTest extends Game{
 		}
 	}
 	
-	
-	public static void main(String[] args){
-		Game game = new PhysicsTest();
-	}
 
 }

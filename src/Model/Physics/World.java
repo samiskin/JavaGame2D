@@ -2,6 +2,7 @@ package Model.Physics;
 
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.collision.shapes.PolygonShape;
+import org.jbox2d.collision.shapes.Shape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
@@ -31,16 +32,55 @@ public class World extends org.jbox2d.dynamics.World{
 		setGravity(new Vec(gx,gy));
 	}
 	
+	private PhysEntity createEntity(Shape shape, BodyDef bodyDef, FixtureDef fixture){
+		Body body = createBody(bodyDef);
+		PhysEntity entity = new PhysEntity(body,body.createFixture(fixture),bodyDef,shape);
+		return entity;
+	}
+	
+	private BodyDef getBodyDef(double x, double y, BodyType type){
+    	BodyDef bodyDef = new BodyDef();
+    	bodyDef.type = type;
+    	bodyDef.position.set((float)x, (float)y);
+    	return bodyDef;
+	}
+	
+	private FixtureDef getFixtureDef(double density, double restitution, double friction, Shape shape){
+		FixtureDef fixtureDef = new FixtureDef();
+    	fixtureDef.density = (float)density;
+    	fixtureDef.restitution = (float)restitution;
+    	fixtureDef.friction = (float)friction;
+    	fixtureDef.shape = shape;
+    	return fixtureDef;
+	}
+	
+	private CircleShape getCircleShape(double radius){
+		CircleShape shape = new CircleShape();
+		shape.m_radius = (float) radius;
+		return shape;
+	}
+	
+	private PolygonShape getRectShape(double width, double height){
+		PolygonShape shape = new PolygonShape();
+		shape.setAsBox((float)(width/2),(float)(height/2));
+		return shape;
+	}
+	
+	public PhysCircle createStaticCircle(double x, double y, double radius){
+    	CircleShape shape = getCircleShape(radius);
+    	FixtureDef fixtureDef = getFixtureDef(1,0,0,shape);
+    	BodyDef bodyDef = getBodyDef(x,y,BodyType.STATIC);
+    	Body body = createBody(bodyDef);
+    	Fixture fixture = body.createFixture(fixtureDef);
+    	PhysCircle circle = new PhysCircle(body,fixture,bodyDef,shape); 
+    	return circle;    	
+	}
+	
 	
 	public PhysCircle createDynamicCircle(double x, double y, double radius){
-    	CircleShape shape = new CircleShape();
-    	shape.m_radius = (float) radius;
-    	FixtureDef fixtureDef = new FixtureDef();
-    	fixtureDef.shape = shape;
-    	fixtureDef.density = 1f;
-    	BodyDef bodyDef = new BodyDef();
-    	bodyDef.type = BodyType.DYNAMIC;
-    	bodyDef.position.set((float)x, (float)y);
+    	CircleShape shape = getCircleShape(radius);
+    	FixtureDef fixtureDef = getFixtureDef(1,0,0,shape);
+    	BodyDef bodyDef = getBodyDef(x,y,BodyType.DYNAMIC);
     	Body body = createBody(bodyDef);
     	Fixture fixture = body.createFixture(fixtureDef);
     	PhysCircle circle = new PhysCircle(body,fixture,bodyDef,shape); 
@@ -49,17 +89,10 @@ public class World extends org.jbox2d.dynamics.World{
 	
 	public PhysRect createStaticRect (double x, double y, double width, double height){
 
-		PolygonShape shape = new PolygonShape();
-		shape.setAsBox((float)(width/2),(float)(height/2));
-		BodyDef bodyDef = new BodyDef();
-		bodyDef.position.set((float)(x+width/2),(float)(y+height/2));
-		bodyDef.type = BodyType.STATIC;
+		PolygonShape shape = getRectShape(width,height);
+		BodyDef bodyDef = getBodyDef(x+width/2,y+height/2,BodyType.STATIC);
 		Body body = createBody(bodyDef);
-		FixtureDef fixtureDef = new FixtureDef();
-    	fixtureDef.density = 1f;
-    	fixtureDef.restitution = 0f;
-    	fixtureDef.friction = 0f;
-    	fixtureDef.shape = shape;
+		FixtureDef fixtureDef = getFixtureDef(1,0,0,shape);
 		Fixture fixture = body.createFixture(fixtureDef);
 		PhysRect rect = new PhysRect(body,fixture,bodyDef,shape);
 		rect.setSize(width, height);
@@ -67,17 +100,10 @@ public class World extends org.jbox2d.dynamics.World{
 	}
 	
 	public PhysRect createDynamicRect(double x, double y, double width, double height){
-		PolygonShape shape = new PolygonShape();
-		shape.setAsBox((float)(width/2),(float)(height/2));
-		BodyDef bodyDef = new BodyDef();
-		bodyDef.position.set((float)(x+width/2),(float)(y+height/2));
-		bodyDef.type = BodyType.DYNAMIC;
+		PolygonShape shape = getRectShape(width,height);
+		BodyDef bodyDef = getBodyDef(x+width/2,y+width/2,BodyType.DYNAMIC);
 		Body body = createBody(bodyDef);
-		FixtureDef fixtureDef = new FixtureDef();
-    	fixtureDef.density = 1f;
-    	fixtureDef.restitution = 0f;
-    	fixtureDef.friction = 0f;
-    	fixtureDef.shape = shape;
+		FixtureDef fixtureDef = getFixtureDef(1,0,0,shape);
 		Fixture fixture = body.createFixture(fixtureDef);
 		PhysRect rect = new PhysRect(body,fixture,bodyDef,shape);
 		rect.setSize(width, height);

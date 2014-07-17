@@ -11,6 +11,10 @@ public class Vec extends Vec2{
 		
 	}
 	
+	public Vec(Vec2 v) {
+		super(v);
+	}
+
 	public void set (double x, double y){
 		super.set((float)x,(float)y);
 	}
