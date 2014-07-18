@@ -21,15 +21,21 @@ public class PlanetTest extends Game{
 	
 	private ArrayList<PhysEntity> bodies;
 	private World world;
-	private final double GRAVITY = 0;
 	private Vec clicked = null;
 	
-	public PlanetTest() throws IOException {
+	public PlanetTest() {
 		super(1280,720);
-		world = new World(GRAVITY);
-		bodies = new ArrayList<PhysEntity>();
 		Game.MAX_FPS = 60;
 		Screen.setPixelsPerMeter(20);
+		
+		// Since the demo requires physics, the world object must be instantiated.
+		// Since this will be taken place in space, a gravity of 0 is necessary.
+		world = new World(0); 
+		
+		
+		bodies = new ArrayList<PhysEntity>();
+		
+		
 		Planet planet = new Planet(world.createStaticCircle(Screen.getCenter().x, Screen.getCenter().y, 3),new Image("res/images/earth.png"));
 		planet.setMass(75);
 		//planet.setVel(0, 15);
@@ -41,6 +47,11 @@ public class PlanetTest extends Game{
 		planet.setVel(0, 15);
 		bodies.add(planet);
 		
+		planet = new Planet(world.createDynamicCircle(Screen.getCenter().x-Screen.WIDTH/4, Screen.getCenter().y, 1),new Image("res/images/moon.png"));
+		planet.setMass(30);
+		planet.setVel(0, -15);
+		bodies.add(planet);
+		
 		start();
 	}
 	
@@ -49,12 +60,8 @@ public class PlanetTest extends Game{
 		while (Mouse.next()){
 			if (Mouse.isButtonDown(0)){
 				Planet body = null;
-				try {
-					body = new Planet(world.createDynamicCircle(Screen.toMeters(Mouse.getX()),Screen.toMeters(Mouse.getY()), 0.5),new Image("res/images/moon.png"));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				body = new Planet(world.createDynamicCircle(Screen.toMeters(Mouse.getX()),Screen.toMeters(Mouse.getY()), 0.5),new Image("res/images/moon.png"));
+				
 				body.setFriction(1);
 				body.applyForce((new Vec(Mouse.getDX(), Mouse.getDY())).mul(10));
 				body.setMass(1);
@@ -68,7 +75,7 @@ public class PlanetTest extends Game{
 				PhysEntity a = bodies.get(i);
 				PhysEntity b = bodies.get(j);
 				if (a.distanceTo(b).lengthSquared() > 0.01){
-					bodies.get(i).applyForceTo(bodies.get(j),-World.GRAVITY_CONST);
+					a.applyForceTo(b,-World.GRAVITY_CONST);
 				}
 			}
 		}

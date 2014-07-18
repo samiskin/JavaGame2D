@@ -13,12 +13,20 @@ public class Image {
 	
 	Texture texture;
 	
-	public Image(String path) throws IOException{
-		texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(path));
+	public Image(String path){
+		try {
+			texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(path));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public Image(String path, String fileType) throws IOException{
-		texture = TextureLoader.getTexture(fileType, ResourceLoader.getResourceAsStream(path));
+	public Image(String path, String fileType){
+		try {
+			texture = TextureLoader.getTexture(fileType, ResourceLoader.getResourceAsStream(path));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void draw(double x,double y,double width,double height){
