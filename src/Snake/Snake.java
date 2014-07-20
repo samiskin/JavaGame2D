@@ -1,40 +1,102 @@
 package Snake;
-
 import java.awt.Color;
 import java.awt.Point;
 import java.util.LinkedList;
-
-
-
+import org.lwjgl.input.Keyboard;
 import JavaGame.Game;
+import JavaGame.InputComponent;
 import JavaGame.Screen;
 
 public class Snake extends Game{
-
 	
-	private final int GRID_SIZE = 21;
-	int dir; // up 0 right 1 down 2 left 3
+	private final int GRID_SIZE = 20;
+	private Point start;
+	private Point food;
+	private int gains;
+	private int dir; // up 0 right 1 down 2 left 3
+	private InputComponent in;
+	private int[][] grid;
+	private boolean over = false;
 	
 	private LinkedList<Point>chain;
 	
 	public Snake() {
 		super(640, 640);
-	}
-	
+	}	
 	
 	public void init(){
+		this.MAX_FPS = 20;
 		Screen.setBGColor(Color.WHITE);
+		start = new Point(15,15);
 		chain = new LinkedList<Point>();
-		chain.add(new Point(5,5));
+		chain.add(new Point(start));
+		in = new InputComponent();
+		grid = new int[(int)(Screen.WIDTH)/GRID_SIZE+2][(int)(Screen.HEIGHT)/GRID_SIZE+2];
+		grid[start.x][start.y] = 1;
+		
+		for (int x = 0; x < grid.length;x++){
+			grid[x][0] = 1;
+			grid[x][grid[0].length-1] = 1;
+		}
+		for (int y = 0; y < grid[0].length; y++){
+			grid[0][y] = 1;
+			grid[grid.length-1][y] = 1;
+		}
+		gains = 15;
+		genFood();
 	}
 	
 	public void update() {
-		
+		input();
+		logic();
 	}
 	
 	public void render() {
 		drawGrid();
+		drawFood();
 		drawSnake();
+	}
+
+	private void input(){
+		if (in.keyPressed("W") && dir != 2)
+			dir = 0;
+		else if (in.keyPressed("D") && dir != 3)
+			dir = 1;
+		else if (in.keyPressed("S") && dir != 0)
+			dir = 2;
+		else if (in.keyPressed("A") && dir != 1)
+			dir = 3;
+	}
+	
+	private void logic(){
+		Point next = new Point(chain.getFirst());
+		switch (dir) {
+		case 0:	next.y++;
+		break;
+		case 1: next.x++;
+		break;
+		case 2: next.y--;
+		break;
+		case 3: next.x--;
+		break;
+		}
+		if (grid[next.x][next.y] > 0){
+			end();
+			return;
+		}
+		grid[next.x][next.y]++;
+		chain.addFirst(next);
+		grid[chain.getLast().x][chain.getLast().y]--;
+		chain.removeLast();
+		
+		if (next.equals(food)){
+			for (int i = 0; i < gains; i++){
+				chain.add(new Point(chain.getLast()));
+				grid[chain.getLast().x][chain.getLast().y]++;
+			}
+
+			genFood();
+		}
 	}
 	
 	private void drawGrid(){
@@ -46,9 +108,24 @@ public class Snake extends Game{
 	}
 	
 	private void drawSnake(){
+		Screen.setColor(Color.red);
 		for (Point ele : chain){
-			Screen.fillRect(ele.x*GRID_SIZE+GRID_SIZE/2, ele.y*GRID_SIZE+GRID_SIZE/2, GRID_SIZE-1, GRID_SIZE-1);
+			Screen.fillRect(ele.x*GRID_SIZE-GRID_SIZE/2, ele.y*GRID_SIZE-GRID_SIZE/2, GRID_SIZE-1, GRID_SIZE-1);
 		}
+	}
+	
+	private void drawFood(){
+		Screen.setColor(Color.GREEN);
+		Screen.fillOval(food.x*GRID_SIZE-GRID_SIZE/2, food.y*GRID_SIZE-GRID_SIZE/2, GRID_SIZE/2);	
+	}
+	
+	private void genFood(){
+		Point p = new Point(chain.getFirst());
+		while (grid[p.x][p.y] > 0){
+			p.x = (int)(Math.random()*grid.length);
+			p.y = (int)(Math.random()*grid[0].length);
+		}
+		food = p;
 	}
 	
 

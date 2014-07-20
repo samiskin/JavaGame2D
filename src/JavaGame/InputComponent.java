@@ -4,9 +4,9 @@ import java.util.HashMap;
 
 import org.lwjgl.input.Keyboard;
 
-public abstract class InputComponent{
+public class InputComponent{
 	
-	protected static HashMap<String,Integer> keys = new HashMap<String,Integer>();
+	public static HashMap<String,Integer> keys = new HashMap<String,Integer>();
 	protected HashMap<String,String> cmd;
 	
 	public InputComponent(){
@@ -22,9 +22,10 @@ public abstract class InputComponent{
 		keys.put("A", Keyboard.KEY_A);
 		keys.put("S", Keyboard.KEY_S);
 		keys.put("D", Keyboard.KEY_D);
+		keys.put("SPACE", Keyboard.KEY_SPACE);
 	}
 
-	protected boolean keyPressed(String key){
+	public static boolean keyPressed(String key){
 		return Keyboard.isKeyDown(keys.get(key));
 	}
 	
@@ -33,6 +34,8 @@ public abstract class InputComponent{
 	}
 	
 	
-	public abstract void update();
+	public void update(){
+		
+	}
 	
 }

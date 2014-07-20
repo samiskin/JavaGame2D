@@ -27,7 +27,7 @@ public class PhysicsTest extends Game{
 		floor.setRestitution(0.5);
 		floor.setFriction(1);		
 		bodies.add(floor);
-		Game.MAX_FPS = 30;
+		super.MAX_FPS = 30;
 	}
 	
 	public void update(){

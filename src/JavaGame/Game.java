@@ -18,6 +18,7 @@ public abstract class Game {
 	public static long timeDelta;
 	private Image img;
 	public static int MAX_FPS = 60;
+	private boolean end;
 	
 	public Game(int width, int height){
         screen = new Screen(width,height);        
@@ -28,7 +29,7 @@ public abstract class Game {
 	
 	public void start(){
         
-        while (!Display.isCloseRequested()) {
+        while (!Display.isCloseRequested() && !end) {
             glClear(GL_COLOR_BUFFER_BIT);
     		screen.render();		
             update();
@@ -42,6 +43,10 @@ public abstract class Game {
         // Release the resources of the wood texture
         Display.destroy();
         System.exit(0);		
+	}
+	
+	protected void end(){
+		end = true;
 	}
 	
 	protected abstract void init();
