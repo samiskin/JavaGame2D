@@ -10,13 +10,13 @@ import org.lwjgl.input.Mouse;
 
 import JavaGame.Game;
 import JavaGame.Image;
-import JavaGame.PhysCircle;
-import JavaGame.PhysEntity;
-import JavaGame.PhysPoly;
-import JavaGame.PhysRect;
 import JavaGame.Screen;
 import JavaGame.Vec;
-import JavaGame.World;
+import Physics.PhysCircle;
+import Physics.PhysEntity;
+import Physics.PhysPoly;
+import Physics.PhysRect;
+import Physics.World;
 
 public class PlanetTest extends Game{
 	
@@ -26,6 +26,10 @@ public class PlanetTest extends Game{
 	
 	public PlanetTest() {
 		super(1280,720);
+	}
+	
+	public void init(){
+
 		Game.MAX_FPS = 60;
 		Screen.setPixelsPerMeter(20);
 		
@@ -52,8 +56,6 @@ public class PlanetTest extends Game{
 		planet.setMass(30);
 		planet.setVel(0, -15);
 		//bodies.add(planet);
-		
-		start();
 	}
 	
 	public void update(){
@@ -92,6 +94,14 @@ public class PlanetTest extends Game{
 	
 	public static void main(String[] args) throws IOException{
 		Game game = new PlanetTest();
+	}
+
+	@Override
+	protected void render() {
+		for (PhysEntity body : bodies){
+			body.render();
+		}
+		
 	}
 	
 

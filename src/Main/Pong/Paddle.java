@@ -1,9 +1,9 @@
 package Main.Pong;
 
 import JavaGame.AbstractEntity2D;
-import JavaGame.PhysRect;
 import JavaGame.Screen;
-import JavaGame.World;
+import Physics.PhysRect;
+import Physics.World;
 
 public class Paddle extends PhysRect{
 
@@ -11,10 +11,13 @@ public class Paddle extends PhysRect{
 	private int height;
 	private PaddleController control;
 	
-	private int speed = 5;
+	private int speed = 10;
 	
 	public Paddle(double x, double y, double width, double height, World world){
 		super(world.createDynamicRect(x, y, width, height));
+		body.setFixedRotation(true);
+		this.setRestitution(1);
+		this.setFriction(0);
 		control = new PaddleController(this);
 	}
 	
@@ -35,6 +38,10 @@ public class Paddle extends PhysRect{
 		setVel(0,-speed);
 	}
 	
+	public void noInput(){
+		setVel(0,0);
+		this.body.setSleepingAllowed(true);
+	}
 	
 	
 }

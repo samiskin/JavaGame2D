@@ -1,12 +1,17 @@
-package JavaGame;
+package Physics;
 
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.collision.shapes.Shape;
+import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
+
+import JavaGame.Rect;
+import JavaGame.RectView;
+import JavaGame.ViewComponent;
 
 public class PhysRect extends PhysEntity implements Rect{
 
@@ -16,13 +21,23 @@ public class PhysRect extends PhysEntity implements Rect{
 	
 	public PhysRect(Body body, Fixture fixture, BodyDef bodyDef, Shape shape) {
 		super(body, fixture,bodyDef,shape);
-		view = new RectView(this);
+		init();
+		
 	}
 	
 	public PhysRect(PhysEntity entity){
 		super(entity);
-		view = new RectView(this);
+		init();
 	}
+	
+	
+	private void init(){
+		view = new RectView(this);
+		Vec2[] vertices = ((PolygonShape)shape).m_vertices;
+		width = vertices[1].x - vertices[0].x;
+		height = vertices[3].y - vertices[0].y;
+	}
+	
 	
 	public double getWidth() {
 		return width;
@@ -36,7 +51,7 @@ public class PhysRect extends PhysEntity implements Rect{
 	public void setAngle(double radians){
 		return;
 	}
-	
+
 	public void setSize(double width, double height){
 		this.width = width;
 		this.height = height;

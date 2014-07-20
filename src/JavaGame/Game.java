@@ -12,7 +12,7 @@ import java.io.IOException;
 
 import static org.lwjgl.opengl.GL11.*;
 
-public class Game {
+public abstract class Game {
     
 	static Screen screen;
 	public static long timeDelta;
@@ -20,14 +20,11 @@ public class Game {
 	public static int MAX_FPS = 60;
 	
 	public Game(int width, int height){
-        screen = new Screen(width,height);
-        
+        screen = new Screen(width,height);        
         InputComponent.init();
-        
-        
-
-	
-	}
+        init();
+        start();
+    }
 	
 	public void start(){
         
@@ -47,11 +44,11 @@ public class Game {
         System.exit(0);		
 	}
 	
-	protected void update(){
-	}
+	protected abstract void init();
 	
-	protected void render(){		
-	}
+	protected abstract void update();
+	
+	protected abstract void render();
 
 
 }

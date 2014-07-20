@@ -11,7 +11,7 @@ public class RectView extends ViewComponent{
 	}
 	
 	public void render() {
-		screen.fillRect(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight(), rect.getAngle(),Color.white);		
+		screen.fillRect(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight(), rect.getAngle());		
 	}
 	
 	

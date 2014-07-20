@@ -7,8 +7,8 @@ import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.Fixture;
 
 import JavaGame.Image;
-import JavaGame.PhysCircle;
-import JavaGame.PhysEntity;
+import Physics.PhysCircle;
+import Physics.PhysEntity;
 
 public class Planet extends PhysCircle{
 

@@ -1,4 +1,4 @@
-package JavaGame;
+package Physics;
 
 import org.jbox2d.collision.shapes.Shape;
 import org.jbox2d.common.Vec2;
@@ -7,6 +7,9 @@ import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
+
+import JavaGame.Entity2D;
+import JavaGame.Vec;
 
 public class PhysEntity implements Entity2D{
 

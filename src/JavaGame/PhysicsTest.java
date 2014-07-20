@@ -5,6 +5,10 @@ import java.util.ArrayList;
 
 import org.lwjgl.input.Mouse;
 
+import Physics.PhysEntity;
+import Physics.PhysRect;
+import Physics.World;
+
 public class PhysicsTest extends Game{
 	
 	private ArrayList<PhysEntity> bodies;
@@ -13,6 +17,9 @@ public class PhysicsTest extends Game{
 	
 	public PhysicsTest() {
 		super(1280,640);
+	}
+
+	public void init(){
 		world = new World(GRAVITY);
 		bodies = new ArrayList<PhysEntity>();
 		PhysRect floor = world.createStaticRect(0, 0, Screen.WIDTH, 0);
@@ -21,7 +28,6 @@ public class PhysicsTest extends Game{
 		floor.setFriction(1);		
 		bodies.add(floor);
 		Game.MAX_FPS = 30;
-		start();
 	}
 	
 	public void update(){

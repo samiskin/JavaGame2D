@@ -11,7 +11,7 @@ public class CircleView extends ViewComponent{
 	}
 	
 	public void render() {
-		screen.fillOval(circle.getX(), circle.getY(), circle.getRadius(), Color.WHITE);		
+		screen.fillOval(circle.getX(), circle.getY(), circle.getRadius());		
 	}
 
 }

@@ -88,16 +88,36 @@ public class Screen extends JFrame{
 	
 	public static void setColor(Color c)
 	{		
-		glColor4f(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha());
+		setColor(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha());
 	}
-		
-	public static void fillRect (double x, double y, double width, double height, double angle, Color c)
+	
+	public static void setColor(Color c, int a)
+	{		
+		setColor(c.getRed(), c.getGreen(), c.getBlue(), a);
+	}
+	
+	public static void setColor(int r, int g, int b, int a){
+		glColor4f(r/255f,g/255f,b/255f,a/255f);
+	}
+	
+	public static void setColor(int r, int g, int b){
+		setColor(r,g,b,255);
+	}
+	
+	public static void setColor(int hex){
+		setColor((hex >> 16) & 0xFF, (hex >> 8) & 0xFF, hex & 0xFF);
+	}
+	
+	public static void setBGColor(Color c){
+    	glClearColor(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha());
+	}
+	
+	public static void fillRect (double x, double y, double width, double height, double angle)
 	{
 		width = toPixels(width);
 		height = toPixels(height);
 		x = toPixels(x);
 		y = toPixels(y);
-		setColor(c);
 		glPushMatrix();
 		glTranslated(x,y,0);
 		glRotated(Math.toDegrees(angle),0,0,1);
@@ -105,11 +125,11 @@ public class Screen extends JFrame{
 		glPopMatrix();
 	}
 	
-	public static void fillRect(double x, double y, double width, double height, Color c){
-		fillRect(x,y,width,height,0,c);
+	public static void fillRect(double x, double y, double width, double height){
+		fillRect(x,y,width,height,0);
 	}
 	
-	public static void drawOval(double cx, double cy, double r, Color color, int num_segments) 
+	public static void drawCircle(double cx, double cy, double r, int num_segments) 
 	{ 
 		cx *= PIXELS_PER_METER;
 		cy *= PIXELS_PER_METER;
@@ -124,7 +144,6 @@ public class Screen extends JFrame{
 		double x = r;//we start at angle = 0 
 		double y = 0; 
 
-		setColor(color);
 	    glBegin(GL_LINE_LOOP); 
 	    for(int ii = 0; ii < num_segments; ii++) 
 	    { 
@@ -138,11 +157,11 @@ public class Screen extends JFrame{
 	    glEnd(); 
 	}
 	
-	public static void drawOval(double cx, double cy, double r, Color color){
-		drawOval(cx,cy,r,color,(int)(Math.max(r/2,15)));
+	public static void drawCircle(double cx, double cy, double r){
+		drawCircle(cx,cy,r,(int)(Math.max(r/2,15)));
 	}
 	
-	public static void fillOval(double cx, double cy, double r, Color color, int num_segments) 
+	public static void fillCircle(double cx, double cy, double r, int num_segments) 
 	{ 
 		cx *= PIXELS_PER_METER;
 		cy *= PIXELS_PER_METER;
@@ -156,7 +175,6 @@ public class Screen extends JFrame{
 		double x = r;//we start at angle = 0 
 		double y = 0; 
 
-		setColor(color);
 	    glBegin(GL_TRIANGLE_FAN); 
 	    for(int ii = 0; ii < num_segments; ii++) 
 	    { 
@@ -170,8 +188,19 @@ public class Screen extends JFrame{
 	    glEnd(); 
 	}
 	
-	public static void fillOval(double cx, double cy, double r, Color color){
-		fillOval(cx,cy,r,color,(int)(Math.max(r/2,15)));
+	public static void fillOval(double cx, double cy, double r){
+		fillCircle(cx,cy,r,(int)(Math.max(r/2,15)));
+	}
+	
+	public static void drawLine(double x1, double y1, double x2, double y2){
+		glBegin(GL_LINES);
+		glVertex2d(x1,y1);
+		glVertex2d(x2,y2);
+		glEnd();
+	}
+	
+	public static void drawLine(Vec p1, Vec p2){
+		drawLine(p1.x,p1.y,p2.x,p2.y);
 	}
 	
 	public static int toPixels(double meters){

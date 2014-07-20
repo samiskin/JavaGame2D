@@ -14,9 +14,11 @@ public class PaddleController extends InputComponent{
 	}
 	
 	public void update(){
-		if (keyPressed(cmd.get("UP")))
+		if (keyPressed(cmd.get("UP")) && !keyPressed(cmd.get("DOWN")))
 			paddle.moveUp();
-		if (keyPressed(cmd.get("DOWN")))
+		else if (keyPressed(cmd.get("DOWN")) && !keyPressed(cmd.get("UP")))
 			paddle.moveDown();
+		else
+			paddle.noInput();
 	}
 }

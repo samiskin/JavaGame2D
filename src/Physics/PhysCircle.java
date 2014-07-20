@@ -1,4 +1,4 @@
-package JavaGame;
+package Physics;
 
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.collision.shapes.Shape;
@@ -7,6 +7,10 @@ import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
+
+import JavaGame.Circle;
+import JavaGame.CircleView;
+import JavaGame.ViewComponent;
 
 public class PhysCircle extends PhysEntity implements Circle{
 
