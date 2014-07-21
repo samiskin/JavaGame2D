@@ -69,11 +69,11 @@ public class Snake extends Game{
 		
 		Point next = new Point(chain.getFirst());
 		switch (dir) {
-		case 0:	next.y++;
+		case 0:	next.y--;
 		break;
 		case 1: next.x++;
 		break;
-		case 2: next.y--;
+		case 2: next.y++;
 		break;
 		case 3: next.x--;
 		break;

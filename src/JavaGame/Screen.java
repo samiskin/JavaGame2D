@@ -52,7 +52,7 @@ public class Screen extends JFrame{
 	public static double PIXELS_PER_METER;
 	public static int[] WINDOW_DIMENSIONS;
 	
-	private static UnicodeFont font;
+	private static Font font;
 	
 	public Screen (int width, int height)
 	{
@@ -62,7 +62,7 @@ public class Screen extends JFrame{
         setUpDisplay();
         setUpMatrices();
 
-        font = this.initCustomFont("res/fonts/SwordArtOnline.ttf", 20f);
+        font = new Font("res/fonts/SwordArtOnline.ttf", 20f);
         
         PIXELS_PER_METER = 1;
 		        
@@ -101,7 +101,7 @@ public class Screen extends JFrame{
  
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
-        glOrtho(0, WINDOW_DIMENSIONS[0], 0,WINDOW_DIMENSIONS[1], 1, -1);
+        glOrtho(0, WINDOW_DIMENSIONS[0], WINDOW_DIMENSIONS[1], 0, 1, -1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 
      
@@ -109,9 +109,15 @@ public class Screen extends JFrame{
 	
 	public static void render(){
 		updateFPS();
+		//font.drawText(getCenter().x, getCenter().y, "--------------------------", 45);
 	}
 	
 	public static void setColor(Color c)
+	{		
+		setColor(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha());
+	}
+	
+	public static void setColor(java.awt.Color c)
 	{		
 		setColor(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha());
 	}
@@ -236,7 +242,7 @@ public class Screen extends JFrame{
 		return pixels/PIXELS_PER_METER;
 	}
 	
-	public static void updateFPS() {
+	private static void updateFPS() {
 		if (getTime() - lastFPS > 1000) {
 			Display.setTitle("FPS: " + fps);
 			fps = 0;
@@ -269,60 +275,9 @@ public class Screen extends JFrame{
 		return new Vec(WIDTH/2,HEIGHT/2);
     }
     
+
     
-    public static void drawText(){    	
-     
-    	// load font from a .ttf file
-    	/*try {
-    		InputStream inputStream	= ResourceLoader.getResourceAsStream("myfont.ttf");
-     
-    		Font awtFont2 = Font.createFont(Font.TRUETYPE_FONT, inputStream);
-    		awtFont2 = awtFont2.deriveFont(24f); // set font size
-    		font2 = new TrueTypeFont(awtFont2, false);
-     
-    	} catch (Exception e) {
-    		e.printStackTrace();
-    	}	*/
-    	if (font == null)
-            font = initCustomFont("res/fonts/SwordArtOnline.ttf", 20f);
-		Color.white.bind();
-    	font.drawString(100, 50, "THE LIGHTWEIGHT JAVA GAMES LIBRARY");
-    }
-    
-    
-   	private static UnicodeFont initAwtFont(String font, int style, float size){
-   		Font awtFont = new Font(font, style, 1);
-   		return initFont(awtFont,size);
-   	}
-   	
-   	private static UnicodeFont initCustomFont(String path, float size){
-   		InputStream iStream = ResourceLoader.getResourceAsStream(path);
-   		Font awtFont = null;
-   		try {
-			awtFont = Font.createFont(Font.TRUETYPE_FONT, iStream);
-			
-		} catch (FontFormatException | IOException e) {
-			e.printStackTrace();
-		}
-   		return initFont(awtFont,size);
-   	}
-   	
-   	
-   	private static UnicodeFont initFont(Font font, float size){
-   		UnicodeFont f = new UnicodeFont(font.deriveFont(0 /*normal*/, size));
-   		f.addAsciiGlyphs();
-   		ColorEffect e = new ColorEffect();
-   		e.setColor(java.awt.Color.white);
-   		f.getEffects().add(e);
-   		try {
-   		    f.loadGlyphs();
-   		} catch (SlickException e1) {
-   		    e1.printStackTrace();
-   		}
-   		return f;
-   	}
-    
-    
+
     
     
     

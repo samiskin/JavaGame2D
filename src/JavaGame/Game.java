@@ -16,7 +16,6 @@ public abstract class Game {
     
 	static Screen screen;
 	public static long timeDelta;
-	private Image img;
 	public static int MAX_FPS = 60;
 	private boolean end;
 	
@@ -31,7 +30,7 @@ public abstract class Game {
         
         while (!Display.isCloseRequested() && !end) {
             glClear(GL_COLOR_BUFFER_BIT);
-    		screen.render();		
+    		Screen.render();		
             update();
             render();
             Display.update();
