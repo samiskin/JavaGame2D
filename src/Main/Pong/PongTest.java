@@ -1,6 +1,7 @@
 package Main.Pong;
 
 import org.jbox2d.common.Vec2;
+import org.lwjgl.input.Keyboard;
 
 import JavaGame.Game;
 import JavaGame.Screen;
@@ -29,7 +30,7 @@ public class PongTest extends Game{
 		
 		
 		paddleRight = new Paddle(Screen.WIDTH-0.15,Screen.getCenter().y,.3,2.5, world);
-		paddleLeft.setControls("W","S");
+		paddleLeft.setControls(Keyboard.KEY_W,Keyboard.KEY_S);
 		ball = world.createDynamicCircle(Screen.WIDTH/2, Screen.HEIGHT/2,Screen.toMeters(10));		
 		ball.setVel(15,10);
 		ball.setPosition(Screen.getCenter());

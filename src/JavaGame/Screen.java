@@ -150,7 +150,7 @@ public class Screen extends JFrame{
 		x = toPixels(x);
 		y = toPixels(y);
 		glPushMatrix();
-		glTranslated(x,y,0);
+		glTranslated(x+width/2,y+height/2,0);
 		glRotated(Math.toDegrees(angle),0,0,1);
 		glRectd(-width/2,-height/2,width/2,height/2); 
 		glPopMatrix();

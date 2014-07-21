@@ -37,5 +37,14 @@ public class Timer {
 		return Screen.getTime()-start;
 	}
 	
+	public long accelerate(long miliseconds){
+		period += miliseconds;
+		return period;
+	}
+	
+	public void setPeriod(long period){
+		this.period = period;
+	}
+	
 	
 }

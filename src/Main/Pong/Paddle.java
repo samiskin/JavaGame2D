@@ -25,7 +25,7 @@ public class Paddle extends PhysRect{
 		control.update();
 	}
 	
-	public void setControls(String up, String down){
+	public void setControls(int up, int down){
 		control.setKeyCommand("UP",up);
 		control.setKeyCommand("DOWN",down);
 	}

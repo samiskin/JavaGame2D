@@ -1,16 +1,18 @@
 package Main.Pong;
 
-import JavaGame.InputComponent;
+import org.lwjgl.input.Keyboard;
 
-public class PaddleController extends InputComponent{
+import JavaGame.Input;
+
+public class PaddleController extends Input{
 	private Paddle paddle;
 	private String upKey;
 	private String downKey;
 	
 	public PaddleController(Paddle target){
 		paddle = target;
-		setKeyCommand("UP","UP");
-		setKeyCommand("DOWN","DOWN");
+		setKeyCommand("UP",Keyboard.KEY_UP);
+		setKeyCommand("DOWN",Keyboard.KEY_DOWN);
 	}
 	
 	public void update(){

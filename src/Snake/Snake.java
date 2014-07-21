@@ -6,7 +6,7 @@ import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;
 
 import JavaGame.Game;
-import JavaGame.InputComponent;
+import JavaGame.Input;
 import JavaGame.Screen;
 import JavaGame.Timer;
 
@@ -17,22 +17,19 @@ public class Snake extends Game{
 	private Point food;
 	private int gains;
 	private int dir; // up 0 right 1 down 2 left 3
-	private InputComponent in;
 	private int[][] grid;
-	private boolean over = false;
 	private Timer timer;
 	
 	private LinkedList<Point>chain;
 	
 	public Snake() {
-		super(200, 200);
+		super(500, 500);
 	}	
 	
 	
 	/** Starts the game
 	 */
 	public void init(){
-		this.MAX_FPS = 60;
 		Screen.setBGColor(Color.white);
 		
 		
@@ -40,11 +37,10 @@ public class Snake extends Game{
 		
 		chain = new LinkedList<Point>();
 		chain.add(new Point(start));
-		in = new InputComponent();
 		grid = new int[(int)(Screen.WIDTH)/GRID_SIZE+2][(int)(Screen.HEIGHT)/GRID_SIZE+2];
 		grid[start.x][start.y] = 1;
 		
-		// Assign walls
+		// Set walls to 1 to enable the snake to 
 		for (int x = 0; x < grid.length;x++){
 			grid[x][0] = 1;
 			grid[x][grid[0].length-1] = 1;
@@ -61,16 +57,18 @@ public class Snake extends Game{
 	
 	public void update() {
 		
-		if (!timer.tick()) return;
 		
-		if (in.keyPressed("W") && dir != 2)
+		if (Input.keyPressed(Keyboard.KEY_W) && dir != 2)
 			dir = 0;
-		else if (in.keyPressed("D") && dir != 3)
+		else if (Input.keyPressed(Keyboard.KEY_D) && dir != 3)
 			dir = 1;
-		else if (in.keyPressed("S") && dir != 0)
+		else if (Input.keyPressed(Keyboard.KEY_S) && dir != 0)
 			dir = 2;
-		else if (in.keyPressed("A") && dir != 1)
+		else if (Input.keyPressed(Keyboard.KEY_A) && dir != 1)
 			dir = 3;
+		
+		// Update only if it is time to move the snake
+		if (!timer.tick()) return;
 		
 		
 		Point next = new Point(chain.getFirst());
@@ -107,15 +105,18 @@ public class Snake extends Game{
 	}
 	
 	private void genFood(){
+		
 		Point p = new Point(chain.getFirst());
 		while (grid[p.x][p.y] > 0){
 			p.x = (int)(Math.random()*grid.length);
 			p.y = (int)(Math.random()*grid[0].length);
 		}
 		food = p;
+		
 	}
-	
+		
 	public void render() {
+		
 		//drawGrid();
 		Screen.setColor(Color.black, 100);
 		for (int x = 0; x <= Screen.WIDTH; x += GRID_SIZE)
@@ -126,13 +127,12 @@ public class Snake extends Game{
 		//drawSnake();
 		Screen.setColor(Color.red);
 		for (Point ele : chain){
-			Screen.fillRect(ele.x*GRID_SIZE-GRID_SIZE/2, ele.y*GRID_SIZE-GRID_SIZE/2, GRID_SIZE-1, GRID_SIZE-1);
+			Screen.fillRect((ele.x-1)*GRID_SIZE+1, (ele.y-1)*GRID_SIZE+1, GRID_SIZE-3, GRID_SIZE-3);
 		}		
 		
 		//drawFood();
 		Screen.setColor(Color.green);
 		Screen.fillOval(food.x*GRID_SIZE-GRID_SIZE/2, food.y*GRID_SIZE-GRID_SIZE/2, GRID_SIZE/2);
-		
 		
 	}
 	

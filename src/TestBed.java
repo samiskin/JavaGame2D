@@ -3,28 +3,28 @@ import JavaGame.Game;
 
 public class TestBed extends Game{
 
-	public TestBed(int width, int height) {
-		super(width, height);
+	public TestBed() {
+		super(640, 640);
 	}
 
 	protected void init() {
-		super.MAX_FPS = 5;		
+		super.setFPS(60);		
 	}
 
-	@Override
+	
 	protected void update() {
-
+		
 		
 	}
 
-	@Override
+	
 	protected void render() {
 		
 		
 	}
 	
 	public static void main(String[] args){
-		Game game = new TestBed(640,640);
+		Game game = new TestBed();
 	}
 
 }

@@ -19,14 +19,17 @@ public abstract class Game {
 	public static int MAX_FPS = 60;
 	private boolean end;
 	
-	public Game(int width, int height){
-        screen = new Screen(width,height);        
-        InputComponent.init();
+	protected Game(int width, int height){
+        screen = new Screen(width,height);    
         init();
         start();
     }
 	
-	public void start(){
+	protected void setFPS(int fps){
+		MAX_FPS = fps;
+	}
+	
+	protected void start(){
         
         while (!Display.isCloseRequested() && !end) {
             glClear(GL_COLOR_BUFFER_BIT);

@@ -10,7 +10,7 @@ import org.lwjgl.input.Mouse;
 
 import JavaGame.Game;
 import JavaGame.Image;
-import JavaGame.Screen;
+import Physics.PhysScreen;
 import JavaGame.Vec;
 import Physics.PhysCircle;
 import Physics.PhysEntity;
@@ -31,7 +31,7 @@ public class PlanetTest extends Game{
 	public void init(){
 
 		Game.MAX_FPS = 60;
-		Screen.setPixelsPerMeter(20);
+		PhysScreen.setPixelsPerMeter(20);
 		
 		// Since the demo requires physics, the world object must be instantiated.
 		// Since this will be taken place in space, a gravity of 0 is necessary.
@@ -41,18 +41,18 @@ public class PlanetTest extends Game{
 		bodies = new ArrayList<PhysEntity>();
 		
 		
-		Planet planet = new Planet(world.createStaticCircle(Screen.getCenter().x, Screen.getCenter().y, 3),new Image("res/images/earth.png"));
+		Planet planet = new Planet(world.createStaticCircle(PhysScreen.getCenter().x, PhysScreen.getCenter().y, 3),new Image("res/images/earth.png"));
 		planet.setMass(75);
 		//planet.setVel(0, 15);
 		bodies.add(planet);
 		
 
-		planet = new Planet(world.createDynamicCircle(Screen.getCenter().x+Screen.WIDTH/4, Screen.getCenter().y, 1),new Image("res/images/moon.png"));
+		planet = new Planet(world.createDynamicCircle(PhysScreen.getCenter().x+PhysScreen.WIDTH/4, PhysScreen.getCenter().y, 1),new Image("res/images/moon.png"));
 		planet.setMass(30);
 		planet.setVel(0, 15);
 		//bodies.add(planet);
 		
-		planet = new Planet(world.createDynamicCircle(Screen.getCenter().x-Screen.WIDTH/4, Screen.getCenter().y, 1),new Image("res/images/moon.png"));
+		planet = new Planet(world.createDynamicCircle(PhysScreen.getCenter().x-PhysScreen.WIDTH/4, PhysScreen.getCenter().y, 1),new Image("res/images/moon.png"));
 		planet.setMass(30);
 		planet.setVel(0, -15);
 		//bodies.add(planet);
@@ -61,7 +61,7 @@ public class PlanetTest extends Game{
 	public void update(){
 		
 		while (Mouse.next()){			
-			Vec point = new Vec(Screen.toMeters(Mouse.getX()),Screen.toMeters(Mouse.getY()));
+			Vec point = new Vec(PhysScreen.toMeters(Mouse.getX()),PhysScreen.toMeters(Mouse.getY()));
 			if (clicked != null && !Mouse.isButtonDown(0)){
 				Vec vel = point.sub(clicked);
 				Planet body = new Planet(world.createDynamicCircle(clicked.x,clicked.y, 0.5),new Image("res/images/moon.png"));
