@@ -24,9 +24,14 @@ public class Snake extends Game{
 		super(640, 640);
 	}	
 	
+	
+	/** Starts the game
+	 */
 	public void init(){
 		this.MAX_FPS = 20;
 		Screen.setBGColor(Color.WHITE);
+		
+		
 		start = new Point(15,15);
 		chain = new LinkedList<Point>();
 		chain.add(new Point(start));
@@ -34,6 +39,7 @@ public class Snake extends Game{
 		grid = new int[(int)(Screen.WIDTH)/GRID_SIZE+2][(int)(Screen.HEIGHT)/GRID_SIZE+2];
 		grid[start.x][start.y] = 1;
 		
+		// Assign walls
 		for (int x = 0; x < grid.length;x++){
 			grid[x][0] = 1;
 			grid[x][grid[0].length-1] = 1;
@@ -42,22 +48,12 @@ public class Snake extends Game{
 			grid[0][y] = 1;
 			grid[grid.length-1][y] = 1;
 		}
-		gains = 15;
+		gains = 3;
 		genFood();
 	}
 	
 	public void update() {
-		input();
-		logic();
-	}
-	
-	public void render() {
-		drawGrid();
-		drawFood();
-		drawSnake();
-	}
-
-	private void input(){
+		
 		if (in.keyPressed("W") && dir != 2)
 			dir = 0;
 		else if (in.keyPressed("D") && dir != 3)
@@ -66,9 +62,8 @@ public class Snake extends Game{
 			dir = 2;
 		else if (in.keyPressed("A") && dir != 1)
 			dir = 3;
-	}
-	
-	private void logic(){
+		
+		
 		Point next = new Point(chain.getFirst());
 		switch (dir) {
 		case 0:	next.y++;
@@ -80,10 +75,13 @@ public class Snake extends Game{
 		case 3: next.x--;
 		break;
 		}
+		
+		// If the snake collides with anything, exit the game
 		if (grid[next.x][next.y] > 0){
 			end();
 			return;
 		}
+		
 		grid[next.x][next.y]++;
 		chain.addFirst(next);
 		grid[chain.getLast().x][chain.getLast().y]--;
@@ -94,29 +92,9 @@ public class Snake extends Game{
 				chain.add(new Point(chain.getLast()));
 				grid[chain.getLast().x][chain.getLast().y]++;
 			}
-
+			
 			genFood();
 		}
-	}
-	
-	private void drawGrid(){
-		Screen.setColor(Color.BLACK, 100);
-		for (int x = 0; x <= Screen.WIDTH; x += GRID_SIZE)
-			Screen.drawLine(x,0,x,Screen.HEIGHT);
-		for (int y = 0; y <= Screen.HEIGHT; y+= GRID_SIZE)
-			Screen.drawLine(0, y, Screen.WIDTH,y);
-	}
-	
-	private void drawSnake(){
-		Screen.setColor(Color.red);
-		for (Point ele : chain){
-			Screen.fillRect(ele.x*GRID_SIZE-GRID_SIZE/2, ele.y*GRID_SIZE-GRID_SIZE/2, GRID_SIZE-1, GRID_SIZE-1);
-		}
-	}
-	
-	private void drawFood(){
-		Screen.setColor(Color.GREEN);
-		Screen.fillOval(food.x*GRID_SIZE-GRID_SIZE/2, food.y*GRID_SIZE-GRID_SIZE/2, GRID_SIZE/2);	
 	}
 	
 	private void genFood(){
@@ -126,6 +104,25 @@ public class Snake extends Game{
 			p.y = (int)(Math.random()*grid[0].length);
 		}
 		food = p;
+	}
+	
+	public void render() {
+		//drawGrid();
+		Screen.setColor(Color.BLACK, 100);
+		for (int x = 0; x <= Screen.WIDTH; x += GRID_SIZE)
+			Screen.drawLine(x,0,x,Screen.HEIGHT);
+		for (int y = 0; y <= Screen.HEIGHT; y+= GRID_SIZE)
+			Screen.drawLine(0, y, Screen.WIDTH,y);
+		
+		//drawSnake();
+		Screen.setColor(Color.red);
+		for (Point ele : chain){
+			Screen.fillRect(ele.x*GRID_SIZE-GRID_SIZE/2, ele.y*GRID_SIZE-GRID_SIZE/2, GRID_SIZE-1, GRID_SIZE-1);
+		}		
+		
+		//drawFood();
+		Screen.setColor(Color.GREEN);
+		Screen.fillOval(food.x*GRID_SIZE-GRID_SIZE/2, food.y*GRID_SIZE-GRID_SIZE/2, GRID_SIZE/2);
 	}
 	
 
