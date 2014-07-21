@@ -1,8 +1,10 @@
 package Snake;
-import java.awt.Color;
 import java.awt.Point;
 import java.util.LinkedList;
+
 import org.lwjgl.input.Keyboard;
+import org.newdawn.slick.Color;
+
 import JavaGame.Game;
 import JavaGame.InputComponent;
 import JavaGame.Screen;
@@ -21,7 +23,7 @@ public class Snake extends Game{
 	private LinkedList<Point>chain;
 	
 	public Snake() {
-		super(640, 640);
+		super(200, 200);
 	}	
 	
 	
@@ -29,10 +31,11 @@ public class Snake extends Game{
 	 */
 	public void init(){
 		this.MAX_FPS = 20;
-		Screen.setBGColor(Color.WHITE);
+		Screen.setBGColor(Color.white);
 		
 		
-		start = new Point(15,15);
+		start = new Point((int)Screen.WIDTH/GRID_SIZE/2,(int)Screen.HEIGHT/GRID_SIZE/2);
+		
 		chain = new LinkedList<Point>();
 		chain.add(new Point(start));
 		in = new InputComponent();
@@ -108,7 +111,7 @@ public class Snake extends Game{
 	
 	public void render() {
 		//drawGrid();
-		Screen.setColor(Color.BLACK, 100);
+		Screen.setColor(Color.black, 100);
 		for (int x = 0; x <= Screen.WIDTH; x += GRID_SIZE)
 			Screen.drawLine(x,0,x,Screen.HEIGHT);
 		for (int y = 0; y <= Screen.HEIGHT; y+= GRID_SIZE)
@@ -121,8 +124,10 @@ public class Snake extends Game{
 		}		
 		
 		//drawFood();
-		Screen.setColor(Color.GREEN);
+		Screen.setColor(Color.green);
 		Screen.fillOval(food.x*GRID_SIZE-GRID_SIZE/2, food.y*GRID_SIZE-GRID_SIZE/2, GRID_SIZE/2);
+		
+		
 	}
 	
 

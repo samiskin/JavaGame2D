@@ -16,6 +16,7 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
@@ -29,6 +30,12 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
+import org.lwjgl.opengl.GL11;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.UnicodeFont;
+import org.newdawn.slick.font.effects.ColorEffect;
+import org.newdawn.slick.util.ResourceLoader;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -45,6 +52,8 @@ public class Screen extends JFrame{
 	public static double PIXELS_PER_METER;
 	public static int[] WINDOW_DIMENSIONS;
 	
+	private static UnicodeFont font;
+	
 	public Screen (int width, int height)
 	{
 		WINDOW_DIMENSIONS = new int[2];
@@ -52,6 +61,9 @@ public class Screen extends JFrame{
 		WINDOW_DIMENSIONS[1] = height;
         setUpDisplay();
         setUpMatrices();
+
+        font = this.initCustomFont("res/fonts/SwordArtOnline.ttf", 20f);
+        
         PIXELS_PER_METER = 1;
 		        
         ViewComponent.init(this);
@@ -72,14 +84,27 @@ public class Screen extends JFrame{
     }
     
     private static void setUpMatrices(){
-    	glClearColor(0.0f,0.0f,0.0f,1.0f);
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
+
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glShadeModel(GL11.GL_SMOOTH);        
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
+		GL11.glDisable(GL11.GL_LIGHTING);                    
+ 
+		GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);                
+        GL11.glClearDepth(1);                                       
+ 
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+ 
+        GL11.glViewport(0,0,WINDOW_DIMENSIONS[0],WINDOW_DIMENSIONS[1]);
+		GL11.glMatrixMode(GL11.GL_MODELVIEW);
+ 
+		GL11.glMatrixMode(GL11.GL_PROJECTION);
+		GL11.glLoadIdentity();
         glOrtho(0, WINDOW_DIMENSIONS[0], 0,WINDOW_DIMENSIONS[1], 1, -1);
-        glMatrixMode(GL_MODELVIEW);  
-        glEnable(GL_BLEND); 
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        
+		GL11.glMatrixMode(GL11.GL_MODELVIEW);
+
+     
     }
 	
 	public static void render(){
@@ -243,4 +268,62 @@ public class Screen extends JFrame{
     public static Vec2 getCenter(){
 		return new Vec(WIDTH/2,HEIGHT/2);
     }
+    
+    
+    public static void drawText(){    	
+     
+    	// load font from a .ttf file
+    	/*try {
+    		InputStream inputStream	= ResourceLoader.getResourceAsStream("myfont.ttf");
+     
+    		Font awtFont2 = Font.createFont(Font.TRUETYPE_FONT, inputStream);
+    		awtFont2 = awtFont2.deriveFont(24f); // set font size
+    		font2 = new TrueTypeFont(awtFont2, false);
+     
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}	*/
+    	if (font == null)
+            font = initCustomFont("res/fonts/SwordArtOnline.ttf", 20f);
+		Color.white.bind();
+    	font.drawString(100, 50, "THE LIGHTWEIGHT JAVA GAMES LIBRARY");
+    }
+    
+    
+   	private static UnicodeFont initAwtFont(String font, int style, float size){
+   		Font awtFont = new Font(font, style, 1);
+   		return initFont(awtFont,size);
+   	}
+   	
+   	private static UnicodeFont initCustomFont(String path, float size){
+   		InputStream iStream = ResourceLoader.getResourceAsStream(path);
+   		Font awtFont = null;
+   		try {
+			awtFont = Font.createFont(Font.TRUETYPE_FONT, iStream);
+			
+		} catch (FontFormatException | IOException e) {
+			e.printStackTrace();
+		}
+   		return initFont(awtFont,size);
+   	}
+   	
+   	
+   	private static UnicodeFont initFont(Font font, float size){
+   		UnicodeFont f = new UnicodeFont(font.deriveFont(0 /*normal*/, size));
+   		f.addAsciiGlyphs();
+   		ColorEffect e = new ColorEffect();
+   		e.setColor(java.awt.Color.white);
+   		f.getEffects().add(e);
+   		try {
+   		    f.loadGlyphs();
+   		} catch (SlickException e1) {
+   		    e1.printStackTrace();
+   		}
+   		return f;
+   	}
+    
+    
+    
+    
+    
 }
