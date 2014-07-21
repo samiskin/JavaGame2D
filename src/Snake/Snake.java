@@ -8,6 +8,7 @@ import org.newdawn.slick.Color;
 import JavaGame.Game;
 import JavaGame.InputComponent;
 import JavaGame.Screen;
+import JavaGame.Timer;
 
 public class Snake extends Game{
 	
@@ -19,6 +20,7 @@ public class Snake extends Game{
 	private InputComponent in;
 	private int[][] grid;
 	private boolean over = false;
+	private Timer timer;
 	
 	private LinkedList<Point>chain;
 	
@@ -30,7 +32,7 @@ public class Snake extends Game{
 	/** Starts the game
 	 */
 	public void init(){
-		this.MAX_FPS = 20;
+		this.MAX_FPS = 60;
 		Screen.setBGColor(Color.white);
 		
 		
@@ -53,9 +55,13 @@ public class Snake extends Game{
 		}
 		gains = 3;
 		genFood();
+		timer = new Timer(60);
+		timer.start();
 	}
 	
 	public void update() {
+		
+		if (!timer.tick()) return;
 		
 		if (in.keyPressed("W") && dir != 2)
 			dir = 0;
