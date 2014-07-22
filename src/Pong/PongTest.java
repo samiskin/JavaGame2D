@@ -1,4 +1,4 @@
-package Main.Pong;
+package Pong;
 
 import org.jbox2d.common.Vec2;
 import org.lwjgl.input.Keyboard;

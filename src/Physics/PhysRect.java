@@ -9,9 +9,9 @@ import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
-import JavaGame.Rect;
-import JavaGame.RectView;
-import JavaGame.ViewComponent;
+import Deprecated.Rect;
+import Deprecated.RectView;
+import Deprecated.ViewComponent;
 
 public class PhysRect extends PhysEntity implements Rect{
 

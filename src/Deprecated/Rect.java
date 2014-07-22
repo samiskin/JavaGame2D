@@ -1,4 +1,4 @@
-package JavaGame;
+package Deprecated;
 
 public interface Rect extends Entity2D{
 	public double getWidth();

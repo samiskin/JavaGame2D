@@ -1,4 +1,4 @@
-package JavaGame;
+package Deprecated;
 
 public interface Entity2D {
 	public double getX();

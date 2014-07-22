@@ -37,6 +37,7 @@ import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
 import org.newdawn.slick.util.ResourceLoader;
 
+import Deprecated.ViewComponent;
 import static org.lwjgl.opengl.GL11.*;
 
 
@@ -66,7 +67,6 @@ public class Screen extends JFrame{
         
         PIXELS_PER_METER = 1;
 		        
-        ViewComponent.init(this);
 		WIDTH = (double)(width)/PIXELS_PER_METER;
 		HEIGHT = (double)(height)/PIXELS_PER_METER;
 		lastFPS = getTime();

@@ -1,4 +1,5 @@
-package JavaGame;
+package Deprecated;
+
 
 public abstract class AbstractEntity2D implements Entity2D {
 	protected double x;

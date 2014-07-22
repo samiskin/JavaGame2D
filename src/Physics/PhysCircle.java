@@ -8,9 +8,9 @@ import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
-import JavaGame.Circle;
-import JavaGame.CircleView;
-import JavaGame.ViewComponent;
+import Deprecated.Circle;
+import Deprecated.CircleView;
+import Deprecated.ViewComponent;
 
 public class PhysCircle extends PhysEntity implements Circle{
 

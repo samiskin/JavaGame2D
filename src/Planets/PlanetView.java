@@ -1,7 +1,7 @@
 package Planets;
 
 
-import JavaGame.ViewComponent;
+import Deprecated.ViewComponent;
 
 public class PlanetView extends ViewComponent{
 

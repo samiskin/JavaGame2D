@@ -1,4 +1,4 @@
-package Main.Pong;
+package Pong;
 
 import org.lwjgl.input.Keyboard;
 

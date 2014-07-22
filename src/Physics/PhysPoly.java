@@ -7,9 +7,9 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.Fixture;
 
-import JavaGame.Poly;
-import JavaGame.PolyView;
-import JavaGame.ViewComponent;
+import Deprecated.Poly;
+import Deprecated.PolyView;
+import Deprecated.ViewComponent;
 
 public class PhysPoly extends PhysEntity implements Poly{
 

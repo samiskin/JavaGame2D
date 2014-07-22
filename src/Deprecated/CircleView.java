@@ -1,6 +1,8 @@
-package JavaGame;
+package Deprecated;
 
 import java.awt.Color;
+
+import JavaGame.Screen;
 
 public class CircleView extends ViewComponent{
 
@@ -11,7 +13,7 @@ public class CircleView extends ViewComponent{
 	}
 	
 	public void render() {
-		screen.fillOval(circle.getX(), circle.getY(), circle.getRadius());		
+		Screen.fillOval(circle.getX(), circle.getY(), circle.getRadius());		
 	}
 
 }

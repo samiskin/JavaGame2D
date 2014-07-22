@@ -1,4 +1,5 @@
-package JavaGame;
+package Deprecated;
+
 
 
 public class PolyView extends ViewComponent{

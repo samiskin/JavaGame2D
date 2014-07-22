@@ -1,6 +1,6 @@
-package Main.Pong;
+package Pong;
 
-import JavaGame.AbstractEntity2D;
+import Deprecated.AbstractEntity2D;
 import JavaGame.Screen;
 import Physics.PhysRect;
 import Physics.World;

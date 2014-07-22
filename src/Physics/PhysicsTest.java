@@ -1,13 +1,12 @@
-package JavaGame;
+package Physics;
 
 import java.awt.Color;
 import java.util.ArrayList;
 
 import org.lwjgl.input.Mouse;
 
-import Physics.PhysEntity;
-import Physics.PhysRect;
-import Physics.World;
+import JavaGame.Game;
+import JavaGame.Screen;
 
 public class PhysicsTest extends Game{
 	

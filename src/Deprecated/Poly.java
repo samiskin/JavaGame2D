@@ -1,4 +1,4 @@
-package JavaGame;
+package Deprecated;
 
 import org.jbox2d.common.Vec2;
 

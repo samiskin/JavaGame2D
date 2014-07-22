@@ -1,6 +1,8 @@
-package JavaGame;
+package Deprecated;
 
 import java.awt.Color;
+
+import JavaGame.Screen;
 
 public class RectView extends ViewComponent{
 
@@ -11,7 +13,7 @@ public class RectView extends ViewComponent{
 	}
 	
 	public void render() {
-		screen.fillRect(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight(), rect.getAngle());		
+		Screen.fillRect(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight(), rect.getAngle());		
 	}
 	
 	

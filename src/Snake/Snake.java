@@ -19,6 +19,7 @@ public class Snake extends Game{
 	private int dir; // up 0 right 1 down 2 left 3
 	private int[][] grid;
 	private Timer timer;
+	private Point gridSize;
 	
 	private LinkedList<Point>chain;
 	
@@ -32,7 +33,7 @@ public class Snake extends Game{
 	public void init(){
 		Screen.setBGColor(Color.white);
 		
-		
+		gridSize = new Point((int)Screen.WIDTH/GRID_SIZE,(int)Screen.HEIGHT/GRID_SIZE);
 		start = new Point((int)Screen.WIDTH/GRID_SIZE/2,(int)Screen.HEIGHT/GRID_SIZE/2);
 		
 		chain = new LinkedList<Point>();
