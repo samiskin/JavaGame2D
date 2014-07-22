@@ -9,7 +9,7 @@ import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 import Deprecated.Entity2D;
-import JavaGame.Vec;
+import JavaGame.Util.Vec;
 
 public class PhysEntity implements Entity2D{
 

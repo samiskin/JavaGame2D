@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import org.lwjgl.input.Mouse;
 
 import JavaGame.Game;
-import JavaGame.Screen;
+import JavaGame.Display.Screen;
 
 public class PhysicsTest extends Game{
 	

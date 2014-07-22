@@ -7,8 +7,8 @@ import org.newdawn.slick.Color;
 
 import JavaGame.Game;
 import JavaGame.Input;
-import JavaGame.Screen;
-import JavaGame.Timer;
+import JavaGame.Display.Screen;
+import JavaGame.Util.Timer;
 
 public class Snake extends Game{
 	
@@ -70,8 +70,7 @@ public class Snake extends Game{
 		
 		// Update only if it is time to move the snake
 		if (!timer.tick()) return;
-		
-		
+				
 		Point next = new Point(chain.getFirst());
 		switch (dir) {
 		case 0:	next.y--;
@@ -90,6 +89,7 @@ public class Snake extends Game{
 			return;
 		}
 		
+		// Move the snake forward and make new food if necessary
 		grid[next.x][next.y]++;
 		chain.addFirst(next);
 		grid[chain.getLast().x][chain.getLast().y]--;

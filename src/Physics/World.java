@@ -11,7 +11,7 @@ import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
 
 import JavaGame.Game;
-import JavaGame.Vec;
+import JavaGame.Util.Vec;
 
 public class World extends org.jbox2d.dynamics.World{
 

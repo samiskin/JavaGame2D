@@ -5,6 +5,8 @@ import org.lwjgl.opengl.DisplayMode;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 
+import JavaGame.Display.Screen;
+
 import java.awt.Color;
 import java.io.File;
 import java.io.FileInputStream;

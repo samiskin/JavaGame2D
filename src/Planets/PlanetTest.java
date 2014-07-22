@@ -9,9 +9,9 @@ import org.jbox2d.common.Vec2;
 import org.lwjgl.input.Mouse;
 
 import JavaGame.Game;
-import JavaGame.Image;
 import Physics.PhysScreen;
-import JavaGame.Vec;
+import JavaGame.Display.Image;
+import JavaGame.Util.Vec;
 import Physics.PhysCircle;
 import Physics.PhysEntity;
 import Physics.PhysPoly;

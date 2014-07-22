@@ -9,7 +9,7 @@ import static org.lwjgl.opengl.GL11.glTranslated;
 
 import org.lwjgl.opengl.GL11;
 
-import JavaGame.Screen;
+import JavaGame.Display.Screen;
 
 public class PhysScreen extends Screen{
 

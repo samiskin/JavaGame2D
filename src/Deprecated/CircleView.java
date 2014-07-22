@@ -2,7 +2,7 @@ package Deprecated;
 
 import java.awt.Color;
 
-import JavaGame.Screen;
+import JavaGame.Display.Screen;
 
 public class CircleView extends ViewComponent{
 
