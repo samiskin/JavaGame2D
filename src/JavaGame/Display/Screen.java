@@ -56,13 +56,14 @@ public class Screen extends JFrame{
 	
 	public Screen (int width, int height)
 	{
+		WIDTH = width;
+		HEIGHT = height;
+		
         setUpDisplay();
         setUpMatrices();
 
         font = new Font("res/fonts/SwordArtOnline.ttf", 20f);
         
-		WIDTH = width;
-		HEIGHT = height;
 		lastFPS = getTime();
 	}
 	
