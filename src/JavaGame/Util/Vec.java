@@ -4,6 +4,9 @@ import org.jbox2d.common.Vec2;
 
 public class Vec extends Vec2{
 
+	public double x;
+	public double y;
+	
 	private static final long serialVersionUID = 1L;
 	
 	public Vec(double x, double y){

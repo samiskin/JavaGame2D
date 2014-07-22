@@ -138,6 +138,26 @@ public class Screen extends JFrame{
     	glClearColor(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha());
 	}
 	
+	public static void fillPoly (double[]x,double[]y){
+		glPushMatrix();
+		glBegin(GL_TRIANGLE_FAN);
+		for (int i = 0; i < x.length; i++){
+			glVertex2d(x[i],y[i]);
+		}
+		glEnd();
+		glPopMatrix();
+	}
+	
+	public static void fillPoly(Vec[] points){
+		glPushMatrix();
+		glBegin(GL_TRIANGLE_FAN);
+		for (int i = 0; i < points.length; i++){
+			glVertex2d(points[i].x,points[i].y);
+		}
+		glEnd();
+		glPopMatrix();
+	}
+	
 	public static void fillRect (double x, double y, double width, double height, double angle)
 	{
 		glPushMatrix();
