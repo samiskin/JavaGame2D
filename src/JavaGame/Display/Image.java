@@ -30,10 +30,6 @@ public class Image {
 	
 	public void render(double x,double y,double width,double height){
 		
-		x = Screen.toPixels(x);
-		y = Screen.toPixels(y);
-		width = Screen.toPixels(width);
-		height = Screen.toPixels(height);
         glEnable(GL_TEXTURE_2D);
 		glColor3f(1f,1f,1f);
 		texture.bind();
@@ -48,6 +44,7 @@ public class Image {
         glVertex2d(x+width, y+height);
         glEnd();		
         glDisable(GL_TEXTURE_2D);
+        
 	}
 	
 

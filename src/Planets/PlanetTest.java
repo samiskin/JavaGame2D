@@ -8,15 +8,15 @@ import java.util.ArrayList;
 import org.jbox2d.common.Vec2;
 import org.lwjgl.input.Mouse;
 
+import Deprecated.World;
+import Deprecated.Physics.PhysCircle;
+import Deprecated.Physics.PhysEntity;
+import Deprecated.Physics.PhysPoly;
+import Deprecated.Physics.PhysRect;
+import Deprecated.Physics.PhysScreen;
 import JavaGame.Game;
-import Physics.PhysScreen;
 import JavaGame.Display.Image;
 import JavaGame.Util.Vec;
-import Physics.PhysCircle;
-import Physics.PhysEntity;
-import Physics.PhysPoly;
-import Physics.PhysRect;
-import Physics.World;
 
 public class PlanetTest extends Game{
 	

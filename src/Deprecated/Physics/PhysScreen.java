@@ -1,4 +1,4 @@
-package Physics;
+package Deprecated.Physics;
 
 import static org.lwjgl.opengl.GL11.glOrtho;
 import static org.lwjgl.opengl.GL11.glPopMatrix;
@@ -12,6 +12,9 @@ import org.lwjgl.opengl.GL11;
 import JavaGame.Display.Screen;
 
 public class PhysScreen extends Screen{
+
+	private static final int[] WINDOW_DIMENSIONS = null;
+
 
 	public PhysScreen(int width, int height) {
 		super(width, height);
@@ -31,7 +34,17 @@ public class PhysScreen extends Screen{
 		glPopMatrix();
 	}
 	
-    private static void setUpMatrices(){
+    public static double toPixels(double y) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+    
+    public static void setPixelsPerMeter(double ppm){
+    	
+    }
+
+
+	private static void setUpMatrices(){
 
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glShadeModel(GL11.GL_SMOOTH);        
@@ -54,5 +67,11 @@ public class PhysScreen extends Screen{
 
      
     }
+
+
+	public static double toMeters(int x) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

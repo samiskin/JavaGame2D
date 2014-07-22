@@ -1,4 +1,4 @@
-package Physics;
+package Deprecated.Physics;
 
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.collision.shapes.Shape;

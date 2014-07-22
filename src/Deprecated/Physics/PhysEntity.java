@@ -1,4 +1,4 @@
-package Physics;
+package Deprecated.Physics;
 
 import org.jbox2d.collision.shapes.Shape;
 import org.jbox2d.common.Vec2;

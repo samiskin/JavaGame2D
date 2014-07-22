@@ -1,4 +1,4 @@
-package Physics;
+package Deprecated;
 
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.collision.shapes.PolygonShape;
@@ -10,6 +10,9 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
 
+import Deprecated.Physics.PhysCircle;
+import Deprecated.Physics.PhysEntity;
+import Deprecated.Physics.PhysRect;
 import JavaGame.Game;
 import JavaGame.Util.Vec;
 

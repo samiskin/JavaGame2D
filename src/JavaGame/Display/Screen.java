@@ -38,6 +38,7 @@ import org.newdawn.slick.font.effects.ColorEffect;
 import org.newdawn.slick.util.ResourceLoader;
 
 import Deprecated.ViewComponent;
+import JavaGame.Geom.Rect;
 import JavaGame.Util.Vec;
 import static org.lwjgl.opengl.GL11.*;
 
@@ -51,31 +52,23 @@ public class Screen extends JFrame{
 	public static int fps;
 	public static long lastFPS;
 	
-	public static double PIXELS_PER_METER;
-	public static int[] WINDOW_DIMENSIONS;
-	
 	private static Font font;
 	
 	public Screen (int width, int height)
 	{
-		WINDOW_DIMENSIONS = new int[2];
-		WINDOW_DIMENSIONS[0] = width;
-		WINDOW_DIMENSIONS[1] = height;
         setUpDisplay();
         setUpMatrices();
 
         font = new Font("res/fonts/SwordArtOnline.ttf", 20f);
         
-        PIXELS_PER_METER = 1;
-		        
-		WIDTH = (double)(width)/PIXELS_PER_METER;
-		HEIGHT = (double)(height)/PIXELS_PER_METER;
+		WIDTH = width;
+		HEIGHT = height;
 		lastFPS = getTime();
 	}
 	
     private static void setUpDisplay() {
         try {
-            Display.setDisplayMode(new DisplayMode(WINDOW_DIMENSIONS[0], WINDOW_DIMENSIONS[1]));
+            Display.setDisplayMode(new DisplayMode((int)WIDTH, (int)HEIGHT));
             Display.setTitle("Game");
             Display.create();
         } catch (LWJGLException e) {
@@ -97,12 +90,12 @@ public class Screen extends JFrame{
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
  
-        GL11.glViewport(0,0,WINDOW_DIMENSIONS[0],WINDOW_DIMENSIONS[1]);
+        GL11.glViewport(0,0,(int)WIDTH,(int)HEIGHT);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
  
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
-        glOrtho(0, WINDOW_DIMENSIONS[0], WINDOW_DIMENSIONS[1], 0, 1, -1);
+        glOrtho(0, (int)WIDTH,(int)HEIGHT, 0, 1, -1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 
      
@@ -146,10 +139,6 @@ public class Screen extends JFrame{
 	
 	public static void fillRect (double x, double y, double width, double height, double angle)
 	{
-		width = toPixels(width);
-		height = toPixels(height);
-		x = toPixels(x);
-		y = toPixels(y);
 		glPushMatrix();
 		glTranslated(x+width/2,y+height/2,0);
 		glRotated(Math.toDegrees(angle),0,0,1);
@@ -161,13 +150,16 @@ public class Screen extends JFrame{
 		fillRect(x,y,width,height,0);
 	}
 	
+	public static void fillRect(Rect rect){
+		fillRect(rect,0);
+	}
+	
+	public static void fillRect(Rect rect, double angle){
+		fillRect(rect.x,rect.y,rect.width,rect.height,angle);
+	}
+	
 	public static void drawCircle(double cx, double cy, double r, int num_segments) 
 	{ 
-		cx *= PIXELS_PER_METER;
-		cy *= PIXELS_PER_METER;
-		r *= PIXELS_PER_METER;
-		
-		
 		double theta = 2 * 3.1415926 / num_segments; 
 		double c = Math.cos(theta);//precalculate the sine and cosine
 		double s = Math.sin(theta);
@@ -195,10 +187,6 @@ public class Screen extends JFrame{
 	
 	public static void fillCircle(double cx, double cy, double r, int num_segments) 
 	{ 
-		cx *= PIXELS_PER_METER;
-		cy *= PIXELS_PER_METER;
-		r *= PIXELS_PER_METER;
-		
 		double theta = 2 * 3.1415926 / num_segments; 
 		double c = Math.cos(theta);//precalculate the sine and cosine
 		double s = Math.sin(theta);
@@ -235,14 +223,6 @@ public class Screen extends JFrame{
 		drawLine(p1.x,p1.y,p2.x,p2.y);
 	}
 	
-	public static int toPixels(double meters){
-		return (int)(meters*PIXELS_PER_METER);
-	}
-	
-	public static double toMeters(double pixels){
-		return pixels/PIXELS_PER_METER;
-	}
-	
 	private static void updateFPS() {
 		if (getTime() - lastFPS > 1000) {
 			Display.setTitle("FPS: " + fps);
@@ -264,12 +244,6 @@ public class Screen extends JFrame{
     private static void cleanUp(boolean asCrash) {
         Display.destroy();
         System.exit(asCrash ? 1 : 0);
-    }
-    
-    public static void setPixelsPerMeter(double ppm){
-    	PIXELS_PER_METER = ppm;
-		WIDTH = (double)(WINDOW_DIMENSIONS[0])/PIXELS_PER_METER;
-		HEIGHT = (double)(WINDOW_DIMENSIONS[1])/PIXELS_PER_METER;
     }
     
     public static Vec2 getCenter(){
