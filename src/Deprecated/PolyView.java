@@ -1,18 +1,17 @@
 package Deprecated;
 
 
+public class PolyView extends ViewComponent {
 
-public class PolyView extends ViewComponent{
-	
-	Poly poly;
-	
-	public PolyView(Poly target){
-		poly = target;
-	}
-	
-	public void render() {
-	
-		
-	}
+    Poly poly;
+
+    public PolyView(Poly target) {
+        poly = target;
+    }
+
+    public void render() {
+
+
+    }
 
 }

@@ -1,20 +1,18 @@
 package Deprecated;
 
-import java.awt.Color;
-
 import JavaGame.Display.Screen;
 
-public class RectView extends ViewComponent{
+public class RectView extends ViewComponent {
 
-	private Rect rect;
-	
-	public RectView (Rect target){
-		rect = target;
-	}
-	
-	public void render() {
-		Screen.fillRect(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight(), rect.getAngle());		
-	}
-	
-	
+    private Rect rect;
+
+    public RectView(Rect target) {
+        rect = target;
+    }
+
+    public void render() {
+        Screen.fillRect(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight(), rect.getAngle());
+    }
+
+
 }

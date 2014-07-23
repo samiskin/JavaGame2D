@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inheritJdk="true">
+	<output-test url="file://$MODULE_DIR$/out/test/JavaGame2D"/>
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$"/>
+	<lib name="lwjgl_util.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/jars/lwjgl_util.jar!/"/>
+	</lib>
+	<lib name="lwjgl.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/jars/lwjgl.jar!/"/>
+	</lib>
+	<lib name="jbox2d-library-2.2.1.1.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/jars/jbox2d-library-2.2.1.1.jar!/"/>
+	</lib>
+	<lib name="slick.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/jars/slick.jar!/"/>
+	</lib>
+	<lib name="basicplayer3.0.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/jars/basicplayer3.0.jar!/"/>
+	</lib>
+	<lib name="commons-logging-api.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/jars/commons-logging-api.jar!/"/>
+	</lib>
+	<lib name="jl1.0.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/jars/jl1.0.jar!/"/>
+	</lib>
+	<lib name="jogg-0.0.7.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/jars/jogg-0.0.7.jar!/"/>
+	</lib>
+	<lib name="jorbis-0.0.15.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/jars/jorbis-0.0.15.jar!/"/>
+	</lib>
+	<lib name="jspeex0.9.7.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/jars/jspeex0.9.7.jar!/"/>
+	</lib>
+	<lib name="tritonus_share.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/jars/tritonus_share.jar!/"/>
+	</lib>
+	<lib name="vorbisspi1.0.2.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/jars/vorbisspi1.0.2.jar!/"/>
+	</lib>
+	<lib name="mp3spi1.9.5.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/jars/mp3spi1.9.5.jar!/"/>
+	</lib>
+</component>
