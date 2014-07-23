@@ -1,3 +1,5 @@
+package Demos;
+
 import JavaGame.Display.Font;
 import JavaGame.Display.Screen;
 import JavaGame.Game;

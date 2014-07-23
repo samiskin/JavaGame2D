@@ -140,6 +140,25 @@ public class Screen extends JFrame {
         glPopMatrix();
     }
 
+    public static void drawRect(double x, double y, double width, double height, double angle){
+        glPushMatrix();
+        glTranslated(x + width / 2, y + height / 2, 0);
+        glRotated(Math.toDegrees(angle), 0, 0, 1);
+
+        glBegin(GL_LINE_LOOP);
+        glVertex2d(-width/2,-height/2);
+        glVertex2d(width/2,-height/2);
+        glVertex2d(width/2,height/2);
+        glVertex2d(-width/2,height/2);
+        glEnd();
+
+        glPopMatrix();
+    }
+
+    public static void drawRect(double x, double y, double width, double height){
+        fillRect(x,y,width,height,0);
+    }
+
     public static void fillRect(double x, double y, double width, double height, double angle) {
         glPushMatrix();
         glTranslated(x + width / 2, y + height / 2, 0);
@@ -150,14 +169,6 @@ public class Screen extends JFrame {
 
     public static void fillRect(double x, double y, double width, double height) {
         fillRect(x, y, width, height, 0);
-    }
-
-    public static void fillRect(Rect rect) {
-        fillRect(rect, 0);
-    }
-
-    public static void fillRect(Rect rect, double angle) {
-        fillRect(rect.x, rect.y, rect.width, rect.height, angle);
     }
 
     public static void drawCircle(double cx, double cy, double r, int num_segments) {

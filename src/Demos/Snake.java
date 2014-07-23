@@ -1,3 +1,5 @@
+package Demos;
+
 import JavaGame.Display.Font;
 import JavaGame.Display.Screen;
 import JavaGame.Game;
@@ -153,4 +155,5 @@ public class Snake extends Game {
         Screen.drawString(font, score + "", Screen.WIDTH - 80, 10);
 
     }
+
 }

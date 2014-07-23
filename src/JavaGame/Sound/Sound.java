@@ -11,20 +11,28 @@ import java.net.URL;
 public class Sound {
 
 
-    BasicPlayer player;
+    public BasicPlayer player;
+    URL fileURL;
+    private boolean looping;
 
     public Sound(String path) {
         String fullPath = System.getProperty("user.dir") + "/" + path;
         player = new BasicPlayer();
+
         try {
-            player.open(new URL("file:///" + fullPath));
+            fileURL = new URL("file:///" + fullPath);
+            player.open(fileURL);
         } catch (BasicPlayerException | MalformedURLException e) {
             e.printStackTrace();
         }
+
+        looping = false;
     }
 
     public void play() {
         try {
+            if (player.getStatus() == 2)
+                player.open(fileURL);
             player.play();
         } catch (BasicPlayerException e) {
             e.printStackTrace();
@@ -48,6 +56,7 @@ public class Sound {
     }
 
     public void loop() {
+        looping = true;
         play();
     }
 
@@ -59,5 +68,11 @@ public class Sound {
         }
     }
 
+    public void update(){
+        if (looping = true){
+            if (player.getStatus() == 2)
+                play();
+        }
+    }
 
 }

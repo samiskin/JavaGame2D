@@ -1,3 +1,5 @@
+import Demos.Snake;
+import Demos.SoundDemo;
 import JavaGame.Game;
 
 /**
@@ -5,6 +7,6 @@ import JavaGame.Game;
  */
 public class Main {
     public static void main(String[] args) {
-        Game game = new Snake();
+        Game game = new SoundDemo();
     }
 }

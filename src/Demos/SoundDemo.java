@@ -1,7 +1,10 @@
+package Demos;
+
 import JavaGame.Display.Screen;
 import JavaGame.Game;
 import JavaGame.Sound.Sound;
 import JavaGame.Util.Button;
+import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;
 
 import java.util.ArrayList;
@@ -9,8 +12,8 @@ import java.util.ArrayList;
 
 public class SoundDemo extends Game {
 
-    Sound testSound;
-    ArrayList<Button> buttons;
+    private Sound testSound;
+    private ArrayList<Button> buttons;
 
     public SoundDemo() {
         super(200, 50);
@@ -18,7 +21,8 @@ public class SoundDemo extends Game {
 
 
     protected void init() {
-        testSound = new Sound("res/audio/Electric Feel.mp3");
+        //testSound = new Sound("res/audio/Electric Feel.mp3");
+        testSound = new Sound("res/audio/blink.wav");
         testSound.loop();
 
         buttons = new ArrayList<Button>();
@@ -35,20 +39,24 @@ public class SoundDemo extends Game {
             testSound.setVolume(0.1);
         else if (buttons.get(3).clicked())
             testSound.setVolume(1);
+        else if (Keyboard.isKeyDown(Keyboard.KEY_RETURN))
+            testSound.loop();
 
+        System.out.println(testSound.player.getStatus());
+        testSound.update();
 
     }
 
     protected void render() {
 
         Screen.setColor(Color.red);
-        Screen.fillRect(buttons.get(0));
+        Screen.fillRect(buttons.get(0).x,buttons.get(0).y,buttons.get(0).width,buttons.get(0).height);
         Screen.setColor(Color.green);
-        Screen.fillRect(buttons.get(1));
+        Screen.fillRect(buttons.get(1).x,buttons.get(1).y,buttons.get(1).width,buttons.get(1).height);
         Screen.setColor(Color.orange);
-        Screen.fillRect(buttons.get(2));
+        Screen.fillRect(buttons.get(2).x,buttons.get(2).y,buttons.get(2).width,buttons.get(2).height);
         Screen.setColor(Color.cyan);
-        Screen.fillRect(buttons.get(3));
+        Screen.fillRect(buttons.get(3).x,buttons.get(3).y,buttons.get(3).width,buttons.get(3).height);
 
     }
 
