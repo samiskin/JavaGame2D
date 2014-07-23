@@ -12,7 +12,7 @@ abstract class Engine {
     }
 
 
-    public void logic() {
+    public void update() {
 
 
     }

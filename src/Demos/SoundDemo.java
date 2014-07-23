@@ -1,13 +1,15 @@
 package Demos;
 
+import java.util.ArrayList;
+
 import JavaGame.Display.Screen;
 import JavaGame.Game;
 import JavaGame.Sound.Sound;
 import JavaGame.Util.Button;
+
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;
 
-import java.util.ArrayList;
 
 
 public class SoundDemo extends Game {
@@ -41,8 +43,6 @@ public class SoundDemo extends Game {
             testSound.setVolume(1);
         else if (Keyboard.isKeyDown(Keyboard.KEY_RETURN))
             testSound.loop();
-
-        System.out.println(testSound.player.getStatus());
         testSound.update();
 
     }

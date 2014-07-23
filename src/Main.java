@@ -7,6 +7,6 @@ import JavaGame.Game;
  */
 public class Main {
     public static void main(String[] args) {
-        Game game = new SoundDemo();
+        Game game = new Snake();
     }
 }
