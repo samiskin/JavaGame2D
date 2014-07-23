@@ -9,7 +9,6 @@ import JavaGame.Game;
 import JavaGame.Util.Vec;
 import org.lwjgl.input.Mouse;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class PlanetTest extends Game {
@@ -20,10 +19,6 @@ public class PlanetTest extends Game {
 
     public PlanetTest() {
         super(1280, 720);
-    }
-
-    public static void main(String[] args) throws IOException {
-        Game game = new PlanetTest();
     }
 
     public void init() {

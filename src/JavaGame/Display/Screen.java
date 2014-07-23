@@ -24,7 +24,7 @@ public class Screen extends JFrame {
     public static int fps;
     public static long lastFPS;
 
-    private static Font font;
+    private static Color currentColor;
 
     public Screen(int width, int height) {
         WIDTH = width;
@@ -33,7 +33,7 @@ public class Screen extends JFrame {
         setUpDisplay();
         setUpMatrices();
 
-        font = new Font("res/fonts/SwordArtOnline.ttf", 20f);
+        currentColor = Color.white;
 
         lastFPS = getTime();
     }
@@ -82,16 +82,13 @@ public class Screen extends JFrame {
         setColor(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha());
     }
 
-    public static void setColor(java.awt.Color c) {
-        setColor(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha());
-    }
-
     public static void setColor(Color c, int a) {
         setColor(c.getRed(), c.getGreen(), c.getBlue(), a);
     }
 
     public static void setColor(int r, int g, int b, int a) {
         glColor4f(r / 255f, g / 255f, b / 255f, a / 255f);
+        currentColor = new Color(r / 255f, g / 255f, b / 255f, a / 255f);
     }
 
     public static void setColor(int r, int g, int b) {
@@ -104,6 +101,23 @@ public class Screen extends JFrame {
 
     public static void setBGColor(Color c) {
         glClearColor(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha());
+    }
+
+    public static void drawString(Font font, String text, double x, double y, double angle) {
+
+        glEnable(GL_TEXTURE_2D);
+        Vec center = new Vec(font.getWidth(text) / 2, font.getHeight(text) / 2);
+        glPushMatrix();
+        glTranslated(x + center.x, y + center.y, 0);
+        glRotated(angle, 0, 0, 1);
+        font.drawString((float) -center.x, -(float) center.y, text, currentColor);
+        glPopMatrix();
+        glDisable(GL_TEXTURE_2D);
+
+    }
+
+    public static void drawString(Font font, String text, double x, double y) {
+        drawString(font, text, x, y, 0);
     }
 
     public static void fillPoly(double[] x, double[] y) {
@@ -192,7 +206,7 @@ public class Screen extends JFrame {
         glEnd();
     }
 
-    public static void fillOval(double cx, double cy, double r) {
+    public static void fillCircle(double cx, double cy, double r) {
         fillCircle(cx, cy, r, (int) (Math.max(r / 2, 15)));
     }
 

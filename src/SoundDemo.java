@@ -2,8 +2,8 @@ import JavaGame.Display.Screen;
 import JavaGame.Game;
 import JavaGame.Sound.Sound;
 import JavaGame.Util.Button;
+import org.newdawn.slick.Color;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 
@@ -16,9 +16,6 @@ public class SoundDemo extends Game {
         super(200, 50);
     }
 
-    public static void main(String[] args) {
-        Game game = new SoundDemo();
-    }
 
     protected void init() {
         testSound = new Sound("res/audio/Electric Feel.mp3");
@@ -27,7 +24,6 @@ public class SoundDemo extends Game {
         buttons = new ArrayList<Button>();
         for (int i = 0; i < 4; i++)
             buttons.add(new Button(i * 50, 0, 50, 50));
-        System.out.println(buttons.size());
     }
 
     protected void update() {

@@ -10,7 +10,8 @@ public class Vec extends Vec2 {
 
     public Vec(double x, double y) {
         super((float) x, (float) y);
-
+        this.x = x;
+        this.y = y;
     }
 
     public Vec(Vec2 v) {
@@ -19,6 +20,8 @@ public class Vec extends Vec2 {
 
     public void set(double x, double y) {
         super.set((float) x, (float) y);
+        this.x = x;
+        this.y = y;
     }
 
 

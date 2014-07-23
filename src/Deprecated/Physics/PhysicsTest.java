@@ -17,10 +17,6 @@ public class PhysicsTest extends Game {
         super(1280, 640);
     }
 
-    public static void main(String[] args) {
-        Game game = new PhysicsTest();
-    }
-
     public void init() {
         world = new World(GRAVITY);
         bodies = new ArrayList<PhysEntity>();

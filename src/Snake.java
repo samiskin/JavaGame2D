@@ -1,3 +1,4 @@
+import JavaGame.Display.Font;
 import JavaGame.Display.Screen;
 import JavaGame.Game;
 import JavaGame.Input;
@@ -20,6 +21,8 @@ public class Snake extends Game {
     private Point gridSize;
 
     private LinkedList<Point> chain;
+    private int score;
+    private Font font;
 
     public Snake() {
         super(500, 500);
@@ -34,6 +37,7 @@ public class Snake extends Game {
      */
     public void init() {
         Screen.setBGColor(Color.white);
+        font = new Font("res/fonts/SwordArtOnline.ttf", 20f);
 
         gridSize = new Point((int) Screen.WIDTH / GRID_SIZE, (int) Screen.HEIGHT / GRID_SIZE);
         start = new Point((int) Screen.WIDTH / GRID_SIZE / 2, (int) Screen.HEIGHT / GRID_SIZE / 2);
@@ -106,7 +110,7 @@ public class Snake extends Game {
                 chain.add(new Point(chain.getLast()));
                 grid[chain.getLast().x][chain.getLast().y]++;
             }
-
+            score++;
             genFood();
         }
     }
@@ -123,9 +127,9 @@ public class Snake extends Game {
     }
 
     public void render() {
-
         //drawGrid();
         Screen.setColor(Color.black, 100);
+
         for (int x = 0; x <= Screen.WIDTH; x += GRID_SIZE)
             Screen.drawLine(x, 0, x, Screen.HEIGHT);
         for (int y = 0; y <= Screen.HEIGHT; y += GRID_SIZE)
@@ -139,7 +143,14 @@ public class Snake extends Game {
 
         //drawFood();
         Screen.setColor(Color.green);
-        Screen.fillOval(food.x * GRID_SIZE - GRID_SIZE / 2, food.y * GRID_SIZE - GRID_SIZE / 2, GRID_SIZE / 2);
+        Screen.fillCircle(food.x * GRID_SIZE - GRID_SIZE / 2, food.y * GRID_SIZE - GRID_SIZE / 2, GRID_SIZE / 2);
+
+        Screen.setColor(Color.black);
+        Screen.fillRect(Screen.WIDTH - 105, 5, 100, 50);
+        Screen.setColor(Color.white);
+        Screen.fillRect(Screen.WIDTH - 103, 7, 96, 46);
+        Screen.setColor(Color.black);
+        Screen.drawString(font, score + "", Screen.WIDTH - 80, 10);
 
     }
 }
