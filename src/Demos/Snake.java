@@ -3,7 +3,7 @@ package Demos;
 import JavaGame.Display.Font;
 import JavaGame.Display.Screen;
 import JavaGame.Game;
-import JavaGame.Input;
+import JavaGame.Input.Input;
 import JavaGame.Util.Timer;
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;

@@ -1,4 +1,4 @@
-package JavaGame;
+package JavaGame.Input;
 
 import org.lwjgl.input.Keyboard;
 
@@ -10,7 +10,7 @@ public class Input {
     }
 
     public static void update() {
-
+        MouseBroadcaster.update();
     }
 
 }

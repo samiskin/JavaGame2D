@@ -47,5 +47,17 @@ public class Image {
 
     }
 
+    public int getWidth(){
+        return texture.getImageWidth();
+    }
+
+    public int getHeight(){
+        return texture.getImageHeight();
+    }
+
+    public void render(double x, double y){
+        render(x, y, getWidth(),getHeight());
+    }
+
 
 }

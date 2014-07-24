@@ -1,37 +1,35 @@
 package Demos;
 
 import JavaGame.Display.Font;
+import JavaGame.Display.Image;
 import JavaGame.Display.Screen;
 import JavaGame.Game;
+import JavaGame.Util.Menu;
+import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Color;
 
 
 public class TestBed extends Game {
 
-    private Font font;
-    private double angle;
-
-
+    private Menu menu;
+    private Image test;
     public TestBed() {
-        super(200, 50);
+        super(1280, 640);
     }
 
     protected void init() {
-        font = new Font("res/fonts/SwordArtOnline.ttf", 25);
-        angle = 0;
+        menu = new Menu(new Image("res/images/Map.jpg","jpg"));
+        test = new Image("res/images/moon.png");
     }
 
     protected void update() {
 
-
+        System.out.println(menu.background.getHeight());
+        System.out.println(Mouse.getY());
     }
 
     protected void render() {
-        angle++;
-        Screen.setColor(Color.white);
-        //Screen.setColor(Color.blue);
-        Screen.drawString(font, "Hello there test", 10, 10, angle % 360);
-        //Screen.fillRect(10,10,126,28,angle%360);
+        menu.render();
     }
 
 }

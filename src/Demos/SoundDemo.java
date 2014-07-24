@@ -33,13 +33,13 @@ public class SoundDemo extends Game {
     }
 
     protected void update() {
-        if (buttons.get(0).clicked()) {
+        if (buttons.get(0).click()) {
             testSound.pause();
-        } else if (buttons.get(1).clicked()) {
+        } else if (buttons.get(1).click()) {
             testSound.resume();
-        } else if (buttons.get(2).clicked())
+        } else if (buttons.get(2).click())
             testSound.setVolume(0.1);
-        else if (buttons.get(3).clicked())
+        else if (buttons.get(3).click())
             testSound.setVolume(1);
         else if (Keyboard.isKeyDown(Keyboard.KEY_RETURN))
             testSound.loop();
