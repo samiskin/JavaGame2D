@@ -82,13 +82,13 @@ public class Snake extends Game {
         Point next = new Point(chain.getFirst());
         switch (dir) {
             case 0:
-                next.y--;
+                next.y++;
                 break;
             case 1:
                 next.x++;
                 break;
             case 2:
-                next.y++;
+                next.y--;
                 break;
             case 3:
                 next.x--;
@@ -121,8 +121,8 @@ public class Snake extends Game {
 
         Point p = new Point(chain.getFirst());
         while (grid[p.x][p.y] > 0) {
-            p.x = (int) (Math.random() * grid.length);
-            p.y = (int) (Math.random() * grid[0].length);
+            p.x = (int) (Math.random() * (grid.length-2))+1;
+            p.y = (int) (Math.random() * (grid[0].length-2))+1;
         }
         food = p;
 

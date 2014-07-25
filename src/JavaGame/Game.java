@@ -4,9 +4,6 @@ import JavaGame.Display.Screen;
 import JavaGame.Input.Input;
 import org.lwjgl.opengl.Display;
 
-import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
-import static org.lwjgl.opengl.GL11.glClear;
-
 public abstract class Game {
 
     public static int MAX_FPS = 60;
@@ -26,7 +23,6 @@ public abstract class Game {
     protected void start() {
 
         while (!Display.isCloseRequested() && !end) {
-            glClear(GL_COLOR_BUFFER_BIT);
             Screen.render();
             Input.update();
             update();

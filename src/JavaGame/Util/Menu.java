@@ -1,6 +1,8 @@
 package JavaGame.Util;
 
 import JavaGame.Display.Image;
+import JavaGame.Display.Screen;
+import org.newdawn.slick.Color;
 
 import java.util.LinkedList;
 
@@ -40,7 +42,9 @@ public class Menu {
 
     public void render() {
         if (background != null) {
-            background.render(0,0);
+            Screen.setColor(Color.white);
+            Screen.fillRect(0,0,Screen.WIDTH,Screen.HEIGHT);
+            background.render(0,0, Screen.WIDTH,Screen.HEIGHT);
         }
     }
     

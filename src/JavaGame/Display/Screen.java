@@ -18,6 +18,8 @@ import static org.lwjgl.opengl.GL11.*;
 public class Screen extends JFrame {
 
 
+
+
     public static double WIDTH, HEIGHT;
 
     public static long lastFrameMS;
@@ -52,28 +54,29 @@ public class Screen extends JFrame {
     private static void setUpMatrices() {
 
         GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glShadeModel(GL11.GL_SMOOTH);
-        GL11.glDisable(GL11.GL_DEPTH_TEST);
-        GL11.glDisable(GL11.GL_LIGHTING);
+        //GL11.glShadeModel(GL11.GL_SMOOTH);
+        //GL11.glDisable(GL11.GL_DEPTH_TEST);
+        //GL11.glDisable(GL11.GL_LIGHTING);
 
         GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-        GL11.glClearDepth(1);
+        //GL11.glClearDepth(1);
 
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
-        GL11.glViewport(0, 0, (int) WIDTH, (int) HEIGHT);
+        //GL11.glViewport(0, 0, (int) WIDTH, (int) HEIGHT);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
 
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
-        glOrtho(0, (int) WIDTH, (int) HEIGHT, 0, 1, -1);
+        glOrtho(0, (int) WIDTH, 0, (int) HEIGHT, 1, -1);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
 
 
     }
 
     public static void render() {
+        glClear(GL_COLOR_BUFFER_BIT);
         updateFPS();
         //font.drawText(getCenter().x, getCenter().y, "--------------------------", 45);
     }
@@ -172,6 +175,7 @@ public class Screen extends JFrame {
     }
 
     public static void drawCircle(double cx, double cy, double r, int num_segments) {
+        glDisable(GL_TEXTURE);
         double theta = 2 * 3.1415926 / num_segments;
         double c = Math.cos(theta);//precalculate the sine and cosine
         double s = Math.sin(theta);
@@ -181,7 +185,7 @@ public class Screen extends JFrame {
         double y = 0;
 
         glBegin(GL_LINE_LOOP);
-        for (int ii = 0; ii < num_segments; ii++) {
+        for (int i = 0; i < num_segments; i++) {
             glVertex2d(x + cx, y + cy);//output vertex
 
             //apply the rotation matrix
@@ -226,6 +230,23 @@ public class Screen extends JFrame {
         glVertex2d(x1, y1);
         glVertex2d(x2, y2);
         glEnd();
+    }
+
+    public static void drawImage(Image image, double x, double y, double width, double height){
+        glEnable(GL_TEXTURE_2D);
+        Color.white.bind();
+        image.texture.bind();
+        glBegin(GL_QUADS);
+        glTexCoord2f(1, 0);
+        glVertex2d(x + width, y);
+        glTexCoord2f(0, 0);
+        glVertex2d(x, y);
+        glTexCoord2f(0, 1);
+        glVertex2d(x, y + height);
+        glTexCoord2f(1, 1);
+        glVertex2d(x + width, y + height);
+        glEnd();
+        glDisable(GL_TEXTURE_2D);
     }
 
     public static void drawLine(Vec p1, Vec p2) {
