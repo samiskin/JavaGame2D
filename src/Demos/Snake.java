@@ -18,6 +18,7 @@ public class Snake extends Game {
     private Point food;
     private int gains;
     private int dir; // up 0 right 1 down 2 left 3
+    private int nextDir;
     private int[][] grid;
     private Timer timer;
     private Point gridSize;
@@ -68,17 +69,17 @@ public class Snake extends Game {
 
 
         if (Input.keyPressed(Keyboard.KEY_W) && dir != 2)
-            dir = 0;
+            nextDir = 0;
         else if (Input.keyPressed(Keyboard.KEY_D) && dir != 3)
-            dir = 1;
+            nextDir = 1;
         else if (Input.keyPressed(Keyboard.KEY_S) && dir != 0)
-            dir = 2;
+            nextDir = 2;
         else if (Input.keyPressed(Keyboard.KEY_A) && dir != 1)
-            dir = 3;
+            nextDir = 3;
 
         // Update only if it is time to move the snake
         if (!timer.tick()) return;
-
+        dir = nextDir;
         Point next = new Point(chain.getFirst());
         switch (dir) {
             case 0:

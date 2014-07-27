@@ -23,8 +23,8 @@ public class SoundDemo extends Game {
 
 
     protected void init() {
-        //testSound = new Sound("res/audio/Electric Feel.mp3");
-        testSound = new Sound("res/audio/blink.wav");
+        testSound = new Sound("res/audio/Electric Feel.mp3");
+        //testSound = new Sound("res/audio/blink.wav");
         testSound.loop();
 
         buttons = new ArrayList<Button>();
@@ -40,7 +40,7 @@ public class SoundDemo extends Game {
         } else if (buttons.get(2).click())
             testSound.setVolume(0.1);
         else if (buttons.get(3).click())
-            testSound.setVolume(1);
+            testSound.seek(4);
         else if (Keyboard.isKeyDown(Keyboard.KEY_RETURN))
             testSound.loop();
         testSound.update();

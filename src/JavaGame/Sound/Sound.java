@@ -68,6 +68,22 @@ public class Sound {
         }
     }
 
+    public void seek(double pos){
+        try {
+            player.seek(50);
+        } catch (BasicPlayerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setPan(double pan){
+        try {
+            player.setPan(pan);
+        } catch (BasicPlayerException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void update(){
         if (looping = true){
             if (player.getStatus() == 2)

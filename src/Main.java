@@ -8,6 +8,6 @@ import JavaGame.Game;
  */
 public class Main {
     public static void main(String[] args) {
-        Game game = new TestBed();
+        Game game = new Snake();
     }
 }
