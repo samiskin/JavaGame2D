@@ -4,6 +4,7 @@ import JavaGame.Display.Font;
 import JavaGame.Display.Screen;
 import JavaGame.Game;
 import JavaGame.Input.Input;
+import JavaGame.Sound.Sound;
 import JavaGame.Util.Timer;
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;
@@ -13,6 +14,8 @@ import java.util.LinkedList;
 
 public class Snake extends Game {
 
+
+    // Game variables
     private final int GRID_SIZE = 20;
     private Point start;
     private Point food;
@@ -22,10 +25,14 @@ public class Snake extends Game {
     private int[][] grid;
     private Timer timer;
     private Point gridSize;
-
     private LinkedList<Point> chain;
     private int score;
+
+
+    // Resources
     private Font font;
+    private Sound bgMusic;
+    private Sound foodFX;
 
     public Snake() {
         super(500, 500);
@@ -40,17 +47,22 @@ public class Snake extends Game {
      */
     public void init() {
         Screen.setBGColor(Color.white);
-        font = new Font("res/fonts/SwordArtOnline.ttf", 20f);
 
+        // Resources Initialization
+        font = new Font("res/fonts/SwordArtOnline.ttf", 20f);
+        bgMusic = new Sound("res/audio/ChaozFantasy.mp3");
+        foodFX = new Sound("res/audio/blink.wav");
+
+
+        // Game Initialization
         gridSize = new Point((int) Screen.WIDTH / GRID_SIZE, (int) Screen.HEIGHT / GRID_SIZE);
         start = new Point((int) Screen.WIDTH / GRID_SIZE / 2, (int) Screen.HEIGHT / GRID_SIZE / 2);
-
         chain = new LinkedList<Point>();
         chain.add(new Point(start));
+        // Make the grid slightly larger than the screen to store walls outside
         grid = new int[(int) (Screen.WIDTH) / GRID_SIZE + 2][(int) (Screen.HEIGHT) / GRID_SIZE + 2];
         grid[start.x][start.y] = 1;
-
-        // Set walls to 1 to enable the snake to
+        // Set walls to 1 to enable the snake to crash into them
         for (int x = 0; x < grid.length; x++) {
             grid[x][0] = 1;
             grid[x][grid[0].length - 1] = 1;
@@ -61,40 +73,40 @@ public class Snake extends Game {
         }
         gains = 3;
         genFood();
+
+
         timer = new Timer(60);
         timer.start();
+        bgMusic.loop();
     }
 
     public void update() {
 
 
-        if (Input.keyPressed(Keyboard.KEY_W) && dir != 2)
-            nextDir = 0;
-        else if (Input.keyPressed(Keyboard.KEY_D) && dir != 3)
-            nextDir = 1;
-        else if (Input.keyPressed(Keyboard.KEY_S) && dir != 0)
-            nextDir = 2;
-        else if (Input.keyPressed(Keyboard.KEY_A) && dir != 1)
-            nextDir = 3;
+        if (Input.keyPressed(Keyboard.KEY_UP) && dir != 2)
+            dir = 0;
+        else if (Input.keyPressed(Keyboard.KEY_RIGHT) && dir != 3)
+            dir = 1;
+        else if (Input.keyPressed(Keyboard.KEY_DOWN) && dir != 0)
+            dir = 2;
+        else if (Input.keyPressed(Keyboard.KEY_LEFT) && dir != 1)
+            dir = 3;
 
         // Update only if it is time to move the snake
         if (!timer.tick()) return;
-        dir = nextDir;
+
+
+//        dir = nextDir;
+
         Point next = new Point(chain.getFirst());
-        switch (dir) {
-            case 0:
+        if (dir == 0)
                 next.y++;
-                break;
-            case 1:
+        else if (dir == 1)
                 next.x++;
-                break;
-            case 2:
+        else if (dir == 2)
                 next.y--;
-                break;
-            case 3:
+        else if (dir == 3)
                 next.x--;
-                break;
-        }
 
         // If the snake collides with anything, exit the game
         if (grid[next.x][next.y] > 0) {
@@ -120,6 +132,7 @@ public class Snake extends Game {
 
     private void genFood() {
 
+        foodFX.play();
         Point p = new Point(chain.getFirst());
         while (grid[p.x][p.y] > 0) {
             p.x = (int) (Math.random() * (grid.length-2))+1;

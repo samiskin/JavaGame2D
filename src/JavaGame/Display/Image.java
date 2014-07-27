@@ -20,6 +20,14 @@ public class Image {
     public Image(String path, String fileType) {
         try {
             texture = TextureLoader.getTexture(fileType, ResourceLoader.getResourceAsStream(path));
+
+            System.out.println("Texture loaded: "+texture);
+            System.out.println(">> Image width: "+texture.getImageWidth());
+            System.out.println(">> Image height: "+texture.getImageHeight());
+            System.out.println(">> Texture width: "+texture.getTextureWidth());
+            System.out.println(">> Texture height: "+texture.getTextureHeight());
+            System.out.println(">> Texture ID: "+texture.getTextureID());
+
             glDisable(GL_TEXTURE_2D); // For some reason this is necessary to draw shapes
         } catch (IOException e) {
             e.printStackTrace();
@@ -27,7 +35,6 @@ public class Image {
     }
 
     public void render(double x, double y, double width, double height) {
-        System.out.println(width + ", " + height);
         Screen.drawImage(this,x,y,width,height);
     }
 

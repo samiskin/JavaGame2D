@@ -9,6 +9,7 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.opengl.Texture;
 
 import javax.swing.*;
 
@@ -233,17 +234,24 @@ public class Screen extends JFrame {
     }
 
     public static void drawImage(Image image, double x, double y, double width, double height){
+        Texture texture = image.texture;
+        float texCoordWidth = (float)texture.getImageWidth()/texture.getTextureWidth();
+
+        float texCoordHeight = (float)texture.getImageHeight()/texture.getTextureHeight();
+
+        //System.out.println(texCoordWidth + ", " + texCoordHeight);
+
         glEnable(GL_TEXTURE_2D);
         Color.white.bind();
-        image.texture.bind();
+        texture.bind();
         glBegin(GL_QUADS);
-        glTexCoord2f(1, 0);
+        glTexCoord2f(texCoordWidth, 0);
         glVertex2d(x + width, y);
         glTexCoord2f(0, 0);
         glVertex2d(x, y);
-        glTexCoord2f(0, 1);
+        glTexCoord2f(0, texCoordHeight);
         glVertex2d(x, y + height);
-        glTexCoord2f(1, 1);
+        glTexCoord2f(texCoordWidth, texCoordHeight);
         glVertex2d(x + width, y + height);
         glEnd();
         glDisable(GL_TEXTURE_2D);

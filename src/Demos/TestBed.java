@@ -3,7 +3,9 @@ package Demos;
 import JavaGame.Display.Image;
 import JavaGame.Display.Screen;
 import JavaGame.Game;
+import JavaGame.Input.Input;
 import JavaGame.Util.Menu;
+import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Color;
 
 
@@ -28,6 +30,8 @@ public class TestBed extends Game {
 
     protected void render() {
         menu.render();
+        test.render(Mouse.getX()-50,Mouse.getY()-50);
+
     }
 
 }
