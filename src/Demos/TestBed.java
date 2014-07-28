@@ -30,7 +30,8 @@ public class TestBed extends Game {
 
     protected void render() {
         menu.render();
-        test.render(Mouse.getX()-50,Mouse.getY()-50);
+        test.render(Mouse.getX()-50,Mouse.getY()-50,100,100);
+
 
     }
 

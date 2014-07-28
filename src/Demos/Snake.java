@@ -84,19 +84,19 @@ public class Snake extends Game {
 
 
         if (Input.keyPressed(Keyboard.KEY_UP) && dir != 2)
-            dir = 0;
+            nextDir = 0;
         else if (Input.keyPressed(Keyboard.KEY_RIGHT) && dir != 3)
-            dir = 1;
+            nextDir = 1;
         else if (Input.keyPressed(Keyboard.KEY_DOWN) && dir != 0)
-            dir = 2;
+            nextDir = 2;
         else if (Input.keyPressed(Keyboard.KEY_LEFT) && dir != 1)
-            dir = 3;
+            nextDir = 3;
 
         // Update only if it is time to move the snake
         if (!timer.tick()) return;
 
 
-//        dir = nextDir;
+        dir = nextDir;
 
         Point next = new Point(chain.getFirst());
         if (dir == 0)
@@ -161,12 +161,9 @@ public class Snake extends Game {
         Screen.setColor(Color.green);
         Screen.fillCircle(food.x * GRID_SIZE - GRID_SIZE / 2, food.y * GRID_SIZE - GRID_SIZE / 2, GRID_SIZE / 2);
 
+        //drawScore();
         Screen.setColor(Color.black);
-        Screen.fillRect(Screen.WIDTH - 105, 5, 100, 50);
-        Screen.setColor(Color.white);
-        Screen.fillRect(Screen.WIDTH - 103, 7, 96, 46);
-        Screen.setColor(Color.black);
-        Screen.drawString(font, score + "", Screen.WIDTH - 80, 10);
+        Screen.drawString(font, (score+123) + "", Screen.WIDTH - 50, 10);
 
     }
 

@@ -70,7 +70,7 @@ public class Screen extends JFrame {
 
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
-        glOrtho(0, (int) WIDTH, 0, (int) HEIGHT, 1, -1);
+        glOrtho(0, (int) WIDTH,  (int) HEIGHT,0, 1, -1);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
 
 
