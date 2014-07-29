@@ -3,7 +3,7 @@ package Planets;
 
 import Deprecated.Physics.PhysCircle;
 import Deprecated.Physics.PhysEntity;
-import JavaGame.Display.Image;
+import JavaGame.Output.Image;
 
 public class Planet extends PhysCircle {
 

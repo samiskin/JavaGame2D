@@ -1,6 +1,6 @@
 package JavaGame;
 
-import JavaGame.Display.Screen;
+import JavaGame.Output.Screen;
 import JavaGame.Input.Input;
 import org.lwjgl.opengl.Display;
 

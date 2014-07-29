@@ -2,9 +2,9 @@ package Demos;
 
 import java.util.ArrayList;
 
-import JavaGame.Display.Screen;
+import JavaGame.Output.Screen;
 import JavaGame.Game;
-import JavaGame.Sound.Sound;
+import JavaGame.Output.Sound;
 import JavaGame.Util.Button;
 
 import org.lwjgl.input.Keyboard;

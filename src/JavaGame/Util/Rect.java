@@ -1,4 +1,4 @@
-package JavaGame.Geom;
+package JavaGame.Util;
 
 import JavaGame.Util.Vec;
 

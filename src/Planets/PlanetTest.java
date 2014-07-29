@@ -4,7 +4,7 @@ package Planets;
 import Deprecated.Physics.PhysEntity;
 import Deprecated.Physics.PhysScreen;
 import Deprecated.World;
-import JavaGame.Display.Image;
+import JavaGame.Output.Image;
 import JavaGame.Game;
 import JavaGame.Util.Vec;
 import org.lwjgl.input.Mouse;

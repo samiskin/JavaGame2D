@@ -1,4 +1,4 @@
-package JavaGame.Sound;
+package JavaGame.Output;
 
 
 import javazoom.jlgui.basicplayer.BasicPlayer;

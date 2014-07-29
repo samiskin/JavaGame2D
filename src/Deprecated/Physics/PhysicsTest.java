@@ -1,7 +1,7 @@
 package Deprecated.Physics;
 
 import Deprecated.World;
-import JavaGame.Display.Screen;
+import JavaGame.Output.Screen;
 import JavaGame.Game;
 import org.lwjgl.input.Mouse;
 

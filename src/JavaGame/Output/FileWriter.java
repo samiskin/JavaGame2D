@@ -1,4 +1,4 @@
-package JavaGame.File;
+package JavaGame.Output;
 
 import java.io.*;
 
@@ -29,8 +29,8 @@ public class FileWriter {
         }
     }
 
-    public FileReader getReader() {
-        return new FileReader(src);
+    public JavaGame.Input.FileReader getReader() {
+        return new JavaGame.Input.FileReader(src);
     }
 
 

@@ -1,6 +1,6 @@
 package JavaGame.Util;
 
-import JavaGame.Display.Screen;
+import JavaGame.Output.Screen;
 
 public class Timer {
 

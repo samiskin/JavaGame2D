@@ -1,6 +1,5 @@
 package JavaGame.Util;
 
-import JavaGame.Geom.Rect;
 import JavaGame.Input.MouseEvent;
 import JavaGame.Input.MouseObserver;
 import org.lwjgl.input.Mouse;

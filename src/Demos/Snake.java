@@ -1,10 +1,10 @@
 package Demos;
 
-import JavaGame.Display.Font;
-import JavaGame.Display.Screen;
+import JavaGame.Output.Font;
+import JavaGame.Output.Screen;
 import JavaGame.Game;
 import JavaGame.Input.Input;
-import JavaGame.Sound.Sound;
+import JavaGame.Output.Sound;
 import JavaGame.Util.Timer;
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;
@@ -100,11 +100,11 @@ public class Snake extends Game {
 
         Point next = new Point(chain.getFirst());
         if (dir == 0)
-                next.y++;
+                next.y--;
         else if (dir == 1)
                 next.x++;
         else if (dir == 2)
-                next.y--;
+                next.y++;
         else if (dir == 3)
                 next.x--;
 

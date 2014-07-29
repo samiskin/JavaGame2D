@@ -1,4 +1,4 @@
-package JavaGame.File;
+package JavaGame.Input;
 
 import java.io.BufferedReader;
 import java.util.ArrayList;

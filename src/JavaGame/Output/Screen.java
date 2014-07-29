@@ -1,6 +1,5 @@
-package JavaGame.Display;
+package JavaGame.Output;
 
-import JavaGame.Geom.Rect;
 import JavaGame.Util.Vec;
 import org.jbox2d.common.Vec2;
 import org.lwjgl.LWJGLException;

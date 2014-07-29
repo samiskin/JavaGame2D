@@ -1,7 +1,7 @@
 package JavaGame.Util;
 
-import JavaGame.Display.Image;
-import JavaGame.Display.Screen;
+import JavaGame.Output.Image;
+import JavaGame.Output.Screen;
 import org.newdawn.slick.Color;
 
 import java.util.LinkedList;

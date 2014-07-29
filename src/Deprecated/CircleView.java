@@ -1,6 +1,6 @@
 package Deprecated;
 
-import JavaGame.Display.Screen;
+import JavaGame.Output.Screen;
 
 public class CircleView extends ViewComponent {
 

@@ -1,4 +1,4 @@
-package JavaGame.Display;
+package JavaGame.Output;
 
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.UnicodeFont;

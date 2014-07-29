@@ -1,7 +1,6 @@
 package Deprecated.Physics;
 
-import JavaGame.Display.Screen;
-import org.lwjgl.opengl.GL11;
+import JavaGame.Output.Screen;
 
 import static org.lwjgl.opengl.GL11.*;
 
