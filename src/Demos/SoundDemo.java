@@ -2,6 +2,7 @@ package Demos;
 
 import java.util.ArrayList;
 
+import JavaGame.Input.Input;
 import JavaGame.Output.Screen;
 import JavaGame.Game;
 import JavaGame.Output.Sound;
@@ -41,7 +42,7 @@ public class SoundDemo extends Game {
             testSound.setVolume(0.1);
         else if (buttons.get(3).click())
             testSound.seek(4);
-        else if (Keyboard.isKeyDown(Keyboard.KEY_RETURN))
+        else if (Input.keyPressed(Input.KEY_RETURN))
             testSound.loop();
         testSound.update();
 

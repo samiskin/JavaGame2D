@@ -83,13 +83,13 @@ public class Snake extends Game {
     public void update() {
 
 
-        if (Input.keyPressed(Keyboard.KEY_UP) && dir != 2)
+        if (Input.keyPressed(Input.KEY_UP) && dir != 2)
             nextDir = 0;
-        else if (Input.keyPressed(Keyboard.KEY_RIGHT) && dir != 3)
+        else if (Input.keyPressed(Input.KEY_RIGHT) && dir != 3)
             nextDir = 1;
-        else if (Input.keyPressed(Keyboard.KEY_DOWN) && dir != 0)
+        else if (Input.keyPressed(Input.KEY_DOWN) && dir != 0)
             nextDir = 2;
-        else if (Input.keyPressed(Keyboard.KEY_LEFT) && dir != 1)
+        else if (Input.keyPressed(Input.KEY_LEFT) && dir != 1)
             nextDir = 3;
 
         // Update only if it is time to move the snake
