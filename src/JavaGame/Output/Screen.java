@@ -285,7 +285,7 @@ public class Screen extends JFrame {
         System.exit(asCrash ? 1 : 0);
     }
 
-    public static Vec2 getCenter() {
+    public static Vec getCenter() {
         return new Vec(WIDTH / 2, HEIGHT / 2);
     }
 
