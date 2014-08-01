@@ -7,6 +7,7 @@ import Deprecated.World;
 import JavaGame.Output.Image;
 import JavaGame.Game;
 import JavaGame.Util.Vec;
+import org.jbox2d.common.Vec2;
 import org.lwjgl.input.Mouse;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class PlanetTest extends Game {
 
     private ArrayList<PhysEntity> bodies;
     private World world;
-    private Vec clicked = null;
+    private Vec2 clicked = null;
 
     public PlanetTest() {
         super(1280, 720);
@@ -54,9 +55,9 @@ public class PlanetTest extends Game {
     public void update() {
 
         while (Mouse.next()) {
-            Vec point = new Vec(PhysScreen.toMeters(Mouse.getX()), PhysScreen.toMeters(Mouse.getY()));
+            Vec2 point = new Vec2((float)PhysScreen.toMeters(Mouse.getX()), (float) PhysScreen.toMeters(Mouse.getY()));
             if (clicked != null && !Mouse.isButtonDown(0)) {
-                Vec vel = point.sub(clicked);
+                Vec2 vel = point.sub(clicked);
                 Planet body = new Planet(world.createDynamicCircle(clicked.x, clicked.y, 0.5), new Image("res/images/moon.png"));
 
                 body.setVel(vel);
@@ -65,7 +66,7 @@ public class PlanetTest extends Game {
 
                 clicked = null;
             } else if (clicked == null && Mouse.isButtonDown(0)) {
-                clicked = new Vec(point);
+                clicked = new Vec2(point);
             }
         }
 
