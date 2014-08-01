@@ -8,7 +8,6 @@ import JavaGame.Util.Vec;
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.collision.shapes.Shape;
-import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
 
 public class World extends org.jbox2d.dynamics.World {
@@ -20,7 +19,7 @@ public class World extends org.jbox2d.dynamics.World {
     }
 
     public World(double gravityX, double gravityY) {
-        super(new Vec2((float)gravityX, (float) gravityY));
+        super(new Vec(gravityX, gravityY));
     }
 
     public void update() {
@@ -28,7 +27,7 @@ public class World extends org.jbox2d.dynamics.World {
     }
 
     public void setGravity(double gx, double gy) {
-        setGravity(new Vec2((float)gx, (float) gy));
+        setGravity(new Vec(gx, gy));
     }
 
     public void enableWalls(boolean up, boolean right, boolean down, boolean left, double width, double height, double restitution) {
