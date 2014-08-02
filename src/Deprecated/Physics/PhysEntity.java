@@ -118,15 +118,15 @@ public class PhysEntity implements Entity2D {
     }
 
     public void setVel(double x, double y) {
-        setVel(new Vec(x, y));
+        setVel(new Vec2((float)x, (float)y));
     }
 
-    public void setVel(Vec v) {
+    public void setVel(Vec2 v) {
         body.setLinearVelocity(v);
     }
 
     public void setPosition(double x, double y) {
-        setPosition(new Vec(x, y));
+        setPosition(new Vec2((float)x, (float)y));
     }
 
     public void setFriction(double friction) {
@@ -135,7 +135,7 @@ public class PhysEntity implements Entity2D {
 
     public float moveX(double dx) {
 
-        setPosition(getPosition().add(new Vec(dx, 0)));
+        setPosition(getPosition().add(new Vec2((float) dx, 0)));
         return bodyDef.position.x;
     }
 
