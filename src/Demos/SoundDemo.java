@@ -20,6 +20,8 @@ public class SoundDemo extends Game {
 
     public SoundDemo() {
         super(200, 50);
+		init();
+		start();
     }
 
 

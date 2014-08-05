@@ -150,12 +150,12 @@ public class Input {
     }
 
 
-    public static double getX(){
+    public static int getX(){
         return Mouse.getX();
     }
 
-    public static double getY(){
-        return Screen.HEIGHT-Mouse.getY();
+    public static int getY(){
+        return Screen.height -Mouse.getY();
     }
 
 }

@@ -14,6 +14,8 @@ public class TestBed extends Game {
 
     public TestBed() {
         super(1280, 640);
+		init();
+		start();
     }
 
     protected void init() {

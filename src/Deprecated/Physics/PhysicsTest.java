@@ -20,7 +20,7 @@ public class PhysicsTest extends Game {
     public void init() {
         world = new World(GRAVITY);
         bodies = new ArrayList<PhysEntity>();
-        PhysRect floor = world.createStaticRect(0, 0, Screen.WIDTH, 0);
+        PhysRect floor = world.createStaticRect(0, 0, Screen.width, 0);
         floor.setRestitution(0.5);
         floor.setFriction(1);
         bodies.add(floor);

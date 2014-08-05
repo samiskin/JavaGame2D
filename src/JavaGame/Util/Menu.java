@@ -43,8 +43,8 @@ public class Menu {
     public void render() {
         if (background != null) {
             Screen.setColor(Color.white);
-            Screen.fillRect(0,0,Screen.WIDTH,Screen.HEIGHT);
-            background.render(0,0, Screen.WIDTH,Screen.HEIGHT);
+            Screen.fillRect(0,0,Screen.width,Screen.height);
+            background.render(0,0, Screen.width,Screen.height);
         }
     }
     

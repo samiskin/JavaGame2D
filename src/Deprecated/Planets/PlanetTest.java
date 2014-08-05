@@ -1,4 +1,4 @@
-package Planets;
+package Deprecated.Planets;
 
 
 import Deprecated.Physics.PhysEntity;
@@ -6,7 +6,6 @@ import Deprecated.Physics.PhysScreen;
 import Deprecated.World;
 import JavaGame.Output.Image;
 import JavaGame.Game;
-import JavaGame.Util.Vec;
 import org.jbox2d.common.Vec2;
 import org.lwjgl.input.Mouse;
 
@@ -41,12 +40,12 @@ public class PlanetTest extends Game {
         bodies.add(planet);
 
 
-        planet = new Planet(world.createDynamicCircle(PhysScreen.getCenter().x + PhysScreen.WIDTH / 4, PhysScreen.getCenter().y, 1), new Image("res/images/moon.png"));
+        planet = new Planet(world.createDynamicCircle(PhysScreen.getCenter().x + PhysScreen.width / 4, PhysScreen.getCenter().y, 1), new Image("res/images/moon.png"));
         planet.setMass(30);
         planet.setVel(0, 15);
         //bodies.add(planet);
 
-        planet = new Planet(world.createDynamicCircle(PhysScreen.getCenter().x - PhysScreen.WIDTH / 4, PhysScreen.getCenter().y, 1), new Image("res/images/moon.png"));
+        planet = new Planet(world.createDynamicCircle(PhysScreen.getCenter().x - PhysScreen.width / 4, PhysScreen.getCenter().y, 1), new Image("res/images/moon.png"));
         planet.setMass(30);
         planet.setVel(0, -15);
         //bodies.add(planet);

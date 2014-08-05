@@ -1,4 +1,4 @@
-package Planets;
+package Deprecated.Planets;
 
 
 import Deprecated.ViewComponent;

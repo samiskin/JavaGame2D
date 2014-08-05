@@ -12,8 +12,6 @@ public abstract class Game {
 
     protected Game(int width, int height) {
         screen = new Screen(width, height);
-        init();
-        start();
     }
 
     protected void setFPS(int fps) {
@@ -40,8 +38,6 @@ public abstract class Game {
     protected void end() {
         end = true;
     }
-
-    protected abstract void init();
 
     protected abstract void update();
 

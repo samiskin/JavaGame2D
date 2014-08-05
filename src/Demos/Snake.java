@@ -6,7 +6,6 @@ import JavaGame.Game;
 import JavaGame.Input.Input;
 import JavaGame.Output.Sound;
 import JavaGame.Util.Timer;
-import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;
 
 import java.awt.*;
@@ -36,6 +35,8 @@ public class Snake extends Game {
 
     public Snake() {
         super(500, 500);
+		init();
+		start();
     }
 
     public static void main(String[] args) {
@@ -55,12 +56,12 @@ public class Snake extends Game {
 
 
         // Game Initialization
-        gridSize = new Point((int) Screen.WIDTH / GRID_SIZE, (int) Screen.HEIGHT / GRID_SIZE);
-        start = new Point((int) Screen.WIDTH / GRID_SIZE / 2, (int) Screen.HEIGHT / GRID_SIZE / 2);
+        gridSize = new Point((int) Screen.width / GRID_SIZE, (int) Screen.height / GRID_SIZE);
+        start = new Point((int) Screen.width / GRID_SIZE / 2, (int) Screen.height / GRID_SIZE / 2);
         chain = new LinkedList<Point>();
         chain.add(new Point(start));
         // Make the grid slightly larger than the screen to store walls outside
-        grid = new int[(int) (Screen.WIDTH) / GRID_SIZE + 2][(int) (Screen.HEIGHT) / GRID_SIZE + 2];
+        grid = new int[(int) (Screen.width) / GRID_SIZE + 2][(int) (Screen.height) / GRID_SIZE + 2];
         grid[start.x][start.y] = 1;
         // Set walls to 1 to enable the snake to crash into them
         for (int x = 0; x < grid.length; x++) {
@@ -146,10 +147,10 @@ public class Snake extends Game {
         //drawGrid();
         Screen.setColor(Color.black, 100);
 
-        for (int x = 0; x <= Screen.WIDTH; x += GRID_SIZE)
-            Screen.drawLine(x, 0, x, Screen.HEIGHT);
-        for (int y = 0; y <= Screen.HEIGHT; y += GRID_SIZE)
-            Screen.drawLine(0, y, Screen.WIDTH, y);
+        for (int x = 0; x <= Screen.width; x += GRID_SIZE)
+            Screen.drawLine(x, 0, x, Screen.height);
+        for (int y = 0; y <= Screen.height; y += GRID_SIZE)
+            Screen.drawLine(0, y, Screen.width, y);
 
         //drawSnake();
         Screen.setColor(Color.red);
@@ -163,7 +164,7 @@ public class Snake extends Game {
 
         //drawScore();
         Screen.setColor(Color.black);
-        Screen.drawString(font, (score+123) + "", Screen.WIDTH - 50, 10);
+        Screen.drawString(font, (score+123) + "", Screen.width - 50, 10);
 
     }
 

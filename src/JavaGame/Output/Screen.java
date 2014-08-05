@@ -1,7 +1,6 @@
 package JavaGame.Output;
 
 import JavaGame.Util.Vec;
-import org.jbox2d.common.Vec2;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
 import org.lwjgl.opengl.Display;
@@ -15,12 +14,12 @@ import javax.swing.*;
 import static org.lwjgl.opengl.GL11.*;
 
 
-public class Screen extends JFrame {
+public class Screen {
 
 
 
 
-    public static double WIDTH, HEIGHT;
+    public static int width, height;
 
     public static long lastFrameMS;
     public static int fps;
@@ -29,8 +28,8 @@ public class Screen extends JFrame {
     private static Color currentColor;
 
     public Screen(int width, int height) {
-        WIDTH = width;
-        HEIGHT = height;
+        Screen.width = width;
+        Screen.height = height;
 
         setUpDisplay();
         setUpMatrices();
@@ -42,7 +41,7 @@ public class Screen extends JFrame {
 
     private static void setUpDisplay() {
         try {
-            Display.setDisplayMode(new DisplayMode((int) WIDTH, (int) HEIGHT));
+            Display.setDisplayMode(new DisplayMode((int) width, (int) height));
             Display.setTitle("Game");
             Display.create();
         } catch (LWJGLException e) {
@@ -64,12 +63,12 @@ public class Screen extends JFrame {
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
-        //GL11.glViewport(0, 0, (int) WIDTH, (int) HEIGHT);
+        //GL11.glViewport(0, 0, (int) width, (int) height);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
 
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
-        glOrtho(0, (int) WIDTH,  (int) HEIGHT,0, 1, -1);
+        glOrtho(0, (int) width,  (int) height,0, 1, -1);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
 
 
@@ -286,7 +285,7 @@ public class Screen extends JFrame {
     }
 
     public static Vec getCenter() {
-        return new Vec(WIDTH / 2, HEIGHT / 2);
+        return new Vec(width / 2, height / 2);
     }
 
 
