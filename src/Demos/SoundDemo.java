@@ -24,10 +24,14 @@ public class SoundDemo extends Game {
 		start();
     }
 
+	public void update(){
+		process();
+		render();
+	}
+
 
     protected void init() {
         testSound = new Sound("res/audio/Electric Feel.mp3");
-        //testSound = new Sound("res/audio/blink.wav");
         testSound.loop();
 
         buttons = new ArrayList<Button>();
@@ -35,7 +39,7 @@ public class SoundDemo extends Game {
             buttons.add(new Button(i * 50, 0, 50, 50));
     }
 
-    protected void update() {
+    protected void process() {
         if (buttons.get(0).click()) {
             testSound.pause();
         } else if (buttons.get(1).click()) {

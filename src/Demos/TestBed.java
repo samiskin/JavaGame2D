@@ -18,15 +18,17 @@ public class TestBed extends Game {
 		start();
     }
 
+	public void update()
+	{
+		render();
+	}
+
     protected void init() {
         menu = new Menu(new Image("res/images/Map.jpg","jpg"));
         test = new Image("res/images/moon.png");
 
     }
 
-    protected void update() {
-
-    }
 
     protected void render() {
         menu.render();

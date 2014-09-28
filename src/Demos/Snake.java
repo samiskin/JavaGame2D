@@ -39,6 +39,11 @@ public class Snake extends Game {
 		start();
     }
 
+	public void update(){
+		process();
+		render();
+	}
+
     public static void main(String[] args) {
         Game game = new Snake();
     }
@@ -81,7 +86,7 @@ public class Snake extends Game {
         bgMusic.loop();
     }
 
-    public void update() {
+    public void process() {
 
 
         if (Input.keyPressed(Input.KEY_UP) && dir != 2)

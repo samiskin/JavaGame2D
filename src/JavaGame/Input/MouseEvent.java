@@ -12,31 +12,31 @@ import java.awt.event.MouseListener;
 public class MouseEvent {
 
 
-    public int getX() {
+    public static int getX() {
         return Mouse.getX();
     }
 
-    public int getY() {
+    public static int getY() {
         return Mouse.getY();
     }
 
-    public Vec getLocation(){
+    public static Vec getLocation(){
         return new Vec(getX(),getY());
     }
 
-    public boolean getCtrlKey() {
+    public static boolean getCtrlKey() {
         return Input.keyPressed(Keyboard.KEY_LCONTROL) || Input.keyPressed(Keyboard.KEY_RCONTROL);
     }
 
-    public boolean getShiftKey() {
+    public static boolean getShiftKey() {
         return Input.keyPressed(Keyboard.KEY_LSHIFT) || Input.keyPressed(Keyboard.KEY_RSHIFT);
     }
 
-    public boolean getAltKey() {
+    public static boolean getAltKey() {
         return Input.keyPressed(Keyboard.KEY_LMENU) || Input.keyPressed(Keyboard.KEY_RMENU);
     }
 
-    public short getButton() {
+    public static short getButton() {
         return (short) Mouse.getEventButton();
     }
 

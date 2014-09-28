@@ -24,7 +24,6 @@ public abstract class Game {
             Screen.render();
             Input.update();
             update();
-            render();
             Display.update();
             Display.sync(MAX_FPS);
         }
@@ -40,8 +39,6 @@ public abstract class Game {
     }
 
     protected abstract void update();
-
-    protected abstract void render();
 
 
 }
