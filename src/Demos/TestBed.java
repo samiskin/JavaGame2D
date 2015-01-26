@@ -13,7 +13,7 @@ public class TestBed extends Game {
     private Image test;
 
     public TestBed() {
-        super(1280, 640);
+        super(120, 120);
 		init();
 		start();
     }
