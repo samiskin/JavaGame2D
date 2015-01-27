@@ -1,8 +1,8 @@
 workspace.xml
 .project
-JavaGame2D.eml
-JavaGame2D.iml
 .idea/
+*.eml
+*.iml
 #################
 ## Eclipse
 #################
