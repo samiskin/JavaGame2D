@@ -34,7 +34,7 @@ public class Snake extends Game {
     private Sound foodFX;
 
     public Snake() {
-        super(600, 600);
+        super(500, 500);
 		init();
 		start();
     }
