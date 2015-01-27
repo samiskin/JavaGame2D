@@ -17,7 +17,8 @@ RUN \
           rm -rf /var/lib/apt/lists/* && \
             rm -rf /var/cache/oracle-jdk8-installer && \
               cd ~ && \
-                git clone git@github.com:samiskin/JavaGame2D.git 
+                git init && \
+                  git pull git@github.com:samiskin/JavaGame2D.git
 
 
             # Define working directory.
