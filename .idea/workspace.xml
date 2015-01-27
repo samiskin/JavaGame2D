@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="686c18a2-a9e6-42c9-ab39-fe566f61923a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JavaGame2D.eml" afterPath="$PROJECT_DIR$/JavaGame2D.eml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JavaGame2D.iml" afterPath="$PROJECT_DIR$/JavaGame2D.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="686c18a2-a9e6-42c9-ab39-fe566f61923a" name="Default" comment="" />
     <ignored path="JavaGame2D.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/src/FullGame/" />
@@ -95,8 +90,8 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.10016695" vertical-offset="0" max-vertical-offset="3390">
-              <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.5509182" vertical-offset="0" max-vertical-offset="3390">
+              <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -763,12 +758,12 @@
       <workItem from="1410989330983" duration="9846000" />
       <workItem from="1411872625011" duration="108000" />
       <workItem from="1411872733737" duration="1900000" />
-      <workItem from="1422313456127" duration="1622000" />
+      <workItem from="1422313456127" duration="1739000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77045000" />
+    <option name="totallyTimeSpent" value="77162000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1220,8 +1215,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10016695" vertical-offset="0" max-vertical-offset="3390">
-          <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.5509182" vertical-offset="0" max-vertical-offset="3390">
+          <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
           <folding />
         </state>
       </provider>
