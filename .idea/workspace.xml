@@ -2,22 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="686c18a2-a9e6-42c9-ab39-fe566f61923a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FullGame/Controller/ControlComponent.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FullGame/Controller/SnakeController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FullGame/Model/Grid.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FullGame/Model/SnakeSegment.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FullGame/Model/Tile.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FullGame/SnakeV2.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FullGame/View/GridView.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FullGame/View/SnakeView.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FullGame/View/ViewComponent.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/natives/lwjgl.dll" afterPath="$PROJECT_DIR$/lib/natives/lwjgl.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/natives/lwjgl64.dll" afterPath="$PROJECT_DIR$/lib/natives/lwjgl64.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.classpath" afterPath="$PROJECT_DIR$/.classpath" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JavaGame2D.eml" afterPath="$PROJECT_DIR$/JavaGame2D.eml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JavaGame2D.iml" afterPath="$PROJECT_DIR$/JavaGame2D.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Demos/TestBed.java" afterPath="$PROJECT_DIR$/src/Demos/TestBed.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="JavaGame2D.iws" />
@@ -108,8 +93,8 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.30050084" vertical-offset="0" max-vertical-offset="3330">
-              <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+            <state vertical-scroll-proportion="0.10016695" vertical-offset="0" max-vertical-offset="3390">
+              <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -660,12 +645,12 @@
       <workItem from="1410989330983" duration="9846000" />
       <workItem from="1411872625011" duration="108000" />
       <workItem from="1411872733737" duration="1900000" />
-      <workItem from="1422313456127" duration="1221000" />
+      <workItem from="1422313456127" duration="1385000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76644000" />
+    <option name="totallyTimeSpent" value="76808000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1117,8 +1102,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30050084" vertical-offset="0" max-vertical-offset="3330">
-          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+        <state vertical-scroll-proportion="0.10016695" vertical-offset="0" max-vertical-offset="3390">
+          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
           <folding />
         </state>
       </provider>
