@@ -56,8 +56,8 @@ public class Snake extends Game {
 
         // Resources Initialization
         font = new Font("res/fonts/SwordArtOnline.ttf", 20f);
-        bgMusic = new Sound("res/audio/ChaozFantasy.mp3");
-        foodFX = new Sound("res/audio/blink.wav");
+   //     bgMusic = new Sound("res/audio/blink.wav");
+   //     foodFX = new Sound("res/audio/blink.wav");
 
 
         // Game Initialization
@@ -83,7 +83,7 @@ public class Snake extends Game {
 
         timer = new Timer(60);
         timer.start();
-        bgMusic.loop();
+     //   bgMusic.loop();
     }
 
     public void process() {
@@ -138,7 +138,7 @@ public class Snake extends Game {
 
     private void genFood() {
 
-        foodFX.play();
+    //    foodFX.play();
         Point p = new Point(chain.getFirst());
         while (grid[p.x][p.y] > 0) {
             p.x = (int) (Math.random() * (grid.length-2))+1;
