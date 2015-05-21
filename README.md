@@ -12,6 +12,8 @@ At the moment I use it mainly to test ideas really easily since all the overhead
 
 ##Getting Started
 
+TODO:  Make this process easier, its kind of annoying at the moment.  Probably need to remove some stuff, maybe convert entirely to LWJGL 3
+
 Add the JavaGame folder to your workspace and import the necessary packages (Ex: Input, Output, Util)
 Add the JARs and Natives to your project
 Your main class that contains the game loop should look like:
